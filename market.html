@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPL: Apparel Fashion</title>
+    <link rel="icon" type="image/png" href="./assets/TPL%20logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Satoshi', sans-serif;
+            margin: 0;
+            background-color: #F9F9F9;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-[#F9F9F9] flex flex-col w-full relative overflow-x-hidden">
+        
+        <!-- Top Promo Bar -->
+        <div class="bg-[#F9F9F9] border-b border-gray-200 h-8 flex items-center justify-center flex-shrink-0 z-[60]">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 text-[10px] sm:text-xs font-medium tracking-wide text-gray-800">
+                    <a href="#" id="promo-insta" class="flex items-center hover:text-black group">
+                        FOLLOW OUR INSTAGRAM! <iconify-icon icon="lucide:chevron-right" class="ml-1 text-gray-500 group-hover:text-black"></iconify-icon>
+                    </a>
+                    <span class="hidden md:inline text-gray-300">|</span>
+                    <a href="#" id="promo-tumbler" class="flex items-center hover:text-black group">
+                        BUY 2 PRODUCT, GET FREE EXCLUSIVE TUMBLER <iconify-icon icon="lucide:chevron-right" class="ml-1 text-gray-500 group-hover:text-black"></iconify-icon>
+                    </a>
+                    <span class="hidden md:inline text-gray-300">|</span>
+                    <a href="#" id="promo-discount" class="flex items-center hover:text-black group">
+                        Discount 30% All Item <iconify-icon icon="lucide:chevron-right" class="ml-1 text-gray-500 group-hover:text-black"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="bg-[#F9F9F9] py-3 border-b border-gray-200 z-[60] flex-shrink-0 sticky top-0">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <div class="hidden md:flex items-center gap-6">
+                        <button class="flex items-center text-sm font-semibold text-black hover:text-gray-600">
+                            Men <iconify-icon icon="lucide:chevron-down" class="ml-1 text-xs"></iconify-icon>
+                        </button>
+                        <button class="flex items-center text-sm font-semibold text-black hover:text-gray-600">
+                            Women <iconify-icon icon="lucide:chevron-down" class="ml-1 text-xs"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="md:hidden">
+                        <button class="p-2 text-gray-600">
+                            <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2">
+                        <a href="#" id="nav-logo" class="flex items-center gap-2">
+                            <img src="./assets/TPL%20logo.png" alt="TPLS Logo" class="h-7 w-auto object-contain">
+                            <span class="text-lg sm:text-xl font-bold tracking-widest">TPLS</span>
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-3 md:gap-5">
+                        <button class="text-gray-800 hover:text-black transition-colors">
+                            <iconify-icon icon="lucide:search" class="text-xl"></iconify-icon>
+                        </button>
+                        <button class="text-gray-800 hover:text-black transition-colors">
+                            <iconify-icon icon="lucide:shopping-bag" class="text-xl"></iconify-icon>
+                        </button>
+                        <button class="hidden sm:block text-gray-800 hover:text-black transition-colors">
+                            <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                        </button>
+                        <div class="hidden sm:flex items-center gap-1 cursor-pointer hover:text-black transition-colors text-gray-800">
+                           <iconify-icon icon="lucide:user" class="text-xl"></iconify-icon>
+                           <iconify-icon icon="lucide:chevron-down" class="text-xs text-gray-500"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Video Section (Fullscreen Hero) -->
+        <section class="w-full h-screen relative bg-black overflow-hidden">
+            <iframe class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[max(100vw,177.78vh)] h-[max(56.25vw,100vh)] pointer-events-none"
+                src="https://www.youtube.com/embed/75nNqaNOYrs?autoplay=1&mute=1&controls=0&loop=1&playlist=75nNqaNOYrs"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </section>
+
+        <!-- Men/Women Split Section (Lavender Background) -->
+        <section class="w-full bg-[#F9F9F9] pt-20 pb-12 px-4 lg:px-8">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="mb-8">
+                    <h2 class="text-2xl md:text-3xl font-light text-gray-800 tracking-wide">Shop For</h2>
+                </div>
+                
+                <div class="w-full bg-[#E8E5F0] relative flex flex-col md:flex-row h-auto md:h-[750px] overflow-hidden rounded-lg">
+                    <!-- Men Side -->
+                    <a href="#" id="category-men-link" class="group w-full md:w-1/2 relative flex justify-center items-end p-8 min-h-[500px] md:min-h-0 block cursor-pointer overflow-hidden">
+                        <div class="absolute bottom-8 left-8 bg-white px-10 py-3 shadow-sm z-20 transition-transform group-hover:scale-105">
+                            <span class="text-sm font-medium text-gray-900 uppercase tracking-widest">Men</span>
+                        </div>
+                        <img src="https://sgp1.digitaloceanspaces.com/upload-file-s3/lascada/1/1729051841057-Lascada_MEN.png" class="h-[80%] md:h-[85%] w-auto object-contain z-10 transition-transform duration-700 group-hover:scale-105 origin-bottom" alt="Men Collection">
+                    </a>
+
+                    <!-- Women Side -->
+                    <a href="#" id="category-women-link" class="group w-full md:w-1/2 relative flex justify-center items-end p-8 min-h-[500px] md:min-h-0 block cursor-pointer overflow-hidden">
+                        <div class="absolute bottom-8 left-8 bg-white px-10 py-3 shadow-sm z-20 transition-transform group-hover:scale-105">
+                            <span class="text-sm font-medium text-gray-900 uppercase tracking-widest">Women</span>
+                        </div>
+                        <div class="absolute bottom-8 right-8 flex flex-col items-center z-20">
+                            <div class="w-4 h-4 border-[1.5px] border-black rotate-45 flex items-center justify-center mb-1">
+                                <div class="w-1 h-1 bg-black"></div>
+                            </div>
+                            <span class="text-[10px] font-bold tracking-widest uppercase">TPLS</span>
+                        </div>
+                        <img src="https://sgp1.digitaloceanspaces.com/upload-file-s3/lascada/1/1729051838710-Lacada_WOMEN.png" class="h-[80%] md:h-[85%] w-auto object-contain z-10 transition-transform duration-700 group-hover:scale-105 origin-bottom" alt="Women Collection">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="w-full bg-[#F9F9F9] py-16 px-4 lg:px-8">
+            <div class="max-w-[1440px] mx-auto">
+                <!-- Header -->
+                <div class="mb-8">
+                    <h2 class="text-2xl md:text-4xl font-light text-gray-800 tracking-tight">Featured Products</h2>
+                    <div class="mt-4 flex items-center">
+                        <button id="btn-scroll-left" class="p-1 text-gray-600 hover:text-black transition-colors">
+                            <iconify-icon icon="lucide:arrow-left" class="text-2xl"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Carousel Container -->
+                <div class="relative group">
+                    <div id="featured-scroll" class="flex gap-6 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory cursor-grab active:cursor-grabbing">
+                        
+                        <!-- Product Card 1 -->
+                        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-start group/card">
+                            <div class="relative bg-[#F2F2F2] aspect-[3/4] flex items-center justify-center overflow-hidden">
+                                <img src="https://www.lascada.id/_next/image?url=https%3A%2F%2Fsgp1.digitaloceanspaces.com%2Fupload-file-s3%2Flascada%2F12%2F1750141248450-fulls-(4).png&w=640&q=75" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" 
+                                     alt="Striped Knit Shirt">
+                                <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
+                                    <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between items-center text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+                                    <span>Man</span>
+                                    <span>S - XL</span>
+                                </div>
+                                <h3 class="text-sm md:text-base font-medium mt-1 text-gray-900">Striped Knit Shirt</h3>
+                                <p class="text-base font-bold mt-2 text-black">$399</p>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-start group/card">
+                            <div class="relative bg-[#F2F2F2] aspect-[3/4] flex items-center justify-center overflow-hidden">
+                                <img src="https://www.lascada.id/_next/image?url=https%3A%2F%2Fsgp1.digitaloceanspaces.com%2Fupload-file-s3%2Flascada%2F12%2F1750403679332-untitled-00774-(1).jpg&w=640&q=75" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" 
+                                     alt="Embroidered Shirt Denim">
+                                <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
+                                    <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between items-center text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+                                    <span>Woman</span>
+                                    <span>S - XXL</span>
+                                </div>
+                                <h3 class="text-sm md:text-base font-medium mt-1 text-gray-900">Embroidered Shirt Denim</h3>
+                                <p class="text-base font-bold mt-2 text-black">$399</p>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-start group/card">
+                            <div class="relative bg-[#F2F2F2] aspect-[3/4] flex items-center justify-center overflow-hidden">
+                                <img src="https://www.lascada.id/_next/image?url=https%3A%2F%2Fsgp1.digitaloceanspaces.com%2Fupload-file-s3%2Flascada%2F12%2F1750408187531-untitled-00519-2-(1).jpg&w=640&q=75" 
+                                     class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" 
+                                     alt="Tweed Ruffle Dress">
+                                <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
+                                    <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between items-center text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+                                    <span>Woman</span>
+                                    <span>S - XL</span>
+                                </div>
+                                <h3 class="text-sm md:text-base font-medium mt-1 text-gray-900">Tweed Ruffle Dress</h3>
+                                <p class="text-base font-bold mt-2 text-black">$399</p>
+                            </div>
+                        </div>
+
+                        <!-- Repeated Items for Carousel Length (Items 4-7) -->
+                        <!-- Product Card 4 (Repeat Man Shirt) -->
+                        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-start group/card">
+                            <div class="relative bg-[#F2F2F2] aspect-[3/4] flex items-center justify-center overflow-hidden">
+                                <img src="https://www.lascada.id/_next/image?url=https%3A%2F%2Fsgp1.digitaloceanspaces.com%2Fupload-file-s3%2Flascada%2F12%2F1750141248450-fulls-(4).png&w=640&q=75" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" alt="Product">
+                                <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
+                                    <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between items-center text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+                                    <span>Man</span>
+                                    <span>S - XL</span>
+                                </div>
+                                <h3 class="text-sm md:text-base font-medium mt-1 text-gray-900">Striped Knit Shirt V2</h3>
+                                <p class="text-base font-bold mt-2 text-black">$399</p>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 5 (Repeat Woman Shirt) -->
+                        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-start group/card">
+                            <div class="relative bg-[#F2F2F2] aspect-[3/4] flex items-center justify-center overflow-hidden">
+                                <img src="https://www.lascada.id/_next/image?url=https%3A%2F%2Fsgp1.digitaloceanspaces.com%2Fupload-file-s3%2Flascada%2F12%2F1750403679332-untitled-00774-(1).jpg&w=640&q=75" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" alt="Product">
+                                <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
+                                    <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between items-center text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+                                    <span>Woman</span>
+                                    <span>S - XL</span>
+                                </div>
+                                <h3 class="text-sm md:text-base font-medium mt-1 text-gray-900">Embroidered Shirt Denim</h3>
+                                <p class="text-base font-bold mt-2 text-black">$399</p>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 6 -->
+                        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-start group/card">
+                            <div class="relative bg-[#F2F2F2] aspect-[3/4] flex items-center justify-center overflow-hidden">
+                                <img src="https://www.lascada.id/_next/image?url=https%3A%2F%2Fsgp1.digitaloceanspaces.com%2Fupload-file-s3%2Flascada%2F12%2F1750408187531-untitled-00519-2-(1).jpg&w=640&q=75" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" alt="Product">
+                                <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
+                                    <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between items-center text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+                                    <span>Woman</span>
+                                    <span>S - XL</span>
+                                </div>
+                                <h3 class="text-sm md:text-base font-medium mt-1 text-gray-900">Tweed Ruffle Dress</h3>
+                                <p class="text-base font-bold mt-2 text-black">$399</p>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 7 -->
+                        <div class="flex-shrink-0 w-[280px] md:w-[320px] snap-start group/card">
+                            <div class="relative bg-[#F2F2F2] aspect-[3/4] flex items-center justify-center overflow-hidden">
+                                <img src="https://www.lascada.id/_next/image?url=https%3A%2F%2Fsgp1.digitaloceanspaces.com%2Fupload-file-s3%2Flascada%2F12%2F1750403679332-untitled-00774-(1).jpg&w=640&q=75" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" alt="Product">
+                                <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50">
+                                    <iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon>
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex justify-between items-center text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+                                    <span>Woman</span>
+                                    <span>S - XL</span>
+                                </div>
+                                <h3 class="text-sm md:text-base font-medium mt-1 text-gray-900">Signature Denim Shirt</h3>
+                                <p class="text-base font-bold mt-2 text-black">$399</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Bottom Right/Left (as per image style) -->
+                    <div class="flex items-center gap-4 mt-8">
+                         <button id="btn-scroll-right" class="p-1 text-gray-800 hover:text-black transition-colors">
+                            <iconify-icon icon="lucide:arrow-right" class="text-2xl"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="w-full flex justify-center mt-12">
+                    <a href="#" id="shop-all-btn" class="inline-block border border-black px-12 py-4 text-xs font-bold uppercase tracking-[0.2em] text-black hover:bg-black hover:text-white transition-all duration-300">
+                        Shop All Featured Product
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Product Wheel Section -->
+        <section id="interactive-wheel-section" class="w-full h-[100vh] relative overflow-hidden bg-[#F9F9F9] flex items-center justify-center">
+            <style>
+                #interactive-wheel-section .wheel-container {
+                  position: relative;
+                  width: 92vmin;
+                  height: 92vmin;
+                  border-radius: 50%;
+                  border: 1px solid rgba(0,0,0,0.06);
+                  margin: auto;
+                  z-index: 10;
+                  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+                  transform-origin: center center;
+                }
+
+                #interactive-wheel-section .product-wrapper {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  cursor: pointer;
+                  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.05));
+                  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease, opacity 0.5s ease;
+                  width: 13vmin;
+                  height: 13vmin;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  z-index: 1;
+                }
+
+                #interactive-wheel-section .product-wrapper:hover {
+                  z-index: 15;
+                  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+                }
+
+                #interactive-wheel-section .product-wrapper.active {
+                  z-index: 40 !important;
+                  cursor: default;
+                  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+                }
+
+                #interactive-wheel-section .image-container {
+                  position: relative;
+                  width: 100%;
+                  height: 100%;
+                }
+
+                #interactive-wheel-section .product-img {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  pointer-events: none;
+                  transition: opacity 0.3s ease;
+                }
+
+                #interactive-wheel-section .product-img-front { z-index: 2; }
+                #interactive-wheel-section .product-img-back { z-index: 1; opacity: 0; }
+                #interactive-wheel-section .product-wrapper:hover .product-img-front { opacity: 0; }
+                #interactive-wheel-section .product-wrapper:hover .product-img-back { opacity: 1; }
+
+                #interactive-wheel-section #product-panel {
+                  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), 
+                              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+                }
+
+                #interactive-wheel-section .open-btn-container {
+                  position: relative;
+                  width: 6rem;
+                  height: 6rem;
+                  border-radius: 1rem;
+                  overflow: hidden;
+                  background: #333;
+                  flex-shrink: 0;
+                  cursor: pointer;
+                  border: 2px solid rgba(255,255,255,0.15);
+                }
+                #interactive-wheel-section .open-btn-container:hover { border-color: rgba(255,255,255,0.4); }
+                #interactive-wheel-section .open-btn-container img { width: 100%; height: 100%; object-fit: contain; }
+
+                #interactive-wheel-section .open-btn-label {
+                  position: absolute;
+                  bottom: 4px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  background: rgba(0,0,0,0.75);
+                  color: white;
+                  font-size: 0.7rem;
+                  font-weight: 500;
+                  padding: 2px 12px;
+                  border-radius: 9999px;
+                  backdrop-filter: blur(4px);
+                }
+
+                #interactive-wheel-section .product-detail-overlay {
+                  position: absolute;
+                  inset: 0;
+                  z-index: 100;
+                  display: flex;
+                  opacity: 0;
+                  pointer-events: none;
+                  transition: opacity 0.4s ease;
+                  background: #F9F9F9;
+                }
+                #interactive-wheel-section .product-detail-overlay.visible {
+                  opacity: 1;
+                  pointer-events: auto;
+                }
+                #interactive-wheel-section .detail-left {
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 2rem;
+                }
+                #interactive-wheel-section .detail-left img {
+                  max-width: 70%;
+                  max-height: 70vh;
+                  object-fit: contain;
+                }
+                #interactive-wheel-section .detail-thumbs {
+                  display: flex;
+                  gap: 0.75rem;
+                  margin-top: 1.5rem;
+                }
+                #interactive-wheel-section .detail-thumbs img {
+                  width: 60px;
+                  height: 60px;
+                  object-fit: contain;
+                  border-radius: 0.5rem;
+                  cursor: pointer;
+                  opacity: 0.5;
+                  transition: opacity 0.2s;
+                }
+                #interactive-wheel-section .detail-thumbs img.active-thumb, #interactive-wheel-section .detail-thumbs img:hover { opacity: 1; }
+
+                #interactive-wheel-section .detail-right {
+                  width: 400px;
+                  background: #1a1a1a;
+                  color: white;
+                  padding: 2.5rem;
+                  display: flex;
+                  flex-direction: column;
+                  overflow-y: auto;
+                  text-align: left;
+                }
+                #interactive-wheel-section .detail-right h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+                #interactive-wheel-section .detail-right .detail-price { color: #999; font-size: 1rem; margin-bottom: 1.5rem; }
+                #interactive-wheel-section .detail-right .detail-desc { color: #bbb; font-size: 0.9rem; line-height: 1.6; margin-bottom: 2rem; }
+
+                #interactive-wheel-section .detail-close-btn {
+                  position: relative;
+                  width: 60px; height: 60px;
+                  border-radius: 1rem;
+                  overflow: hidden;
+                  background: #333;
+                  border: 2px solid rgba(255,255,255,0.15);
+                  cursor: pointer;
+                  flex-shrink: 0;
+                }
+                #interactive-wheel-section .detail-close-btn:hover { border-color: rgba(255,255,255,0.4); }
+                #interactive-wheel-section .detail-close-btn img { width: 100%; height: 100%; object-fit: contain; }
+                #interactive-wheel-section .detail-close-label {
+                  position: absolute;
+                  bottom: 2px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  background: rgba(0,0,0,0.75);
+                  color: white;
+                  font-size: 0.6rem;
+                  font-weight: 500;
+                  padding: 1px 8px;
+                  border-radius: 9999px;
+                }
+
+                #interactive-wheel-section .size-options { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+                #interactive-wheel-section .size-btn {
+                  padding: 0.5rem 1.2rem;
+                  border: 1px solid #444;
+                  border-radius: 9999px;
+                  background: transparent;
+                  color: white;
+                  cursor: pointer;
+                  font-size: 0.85rem;
+                  transition: all 0.2s;
+                }
+                #interactive-wheel-section .size-btn:hover, #interactive-wheel-section .size-btn.selected { background: white; color: black; border-color: white; }
+
+                #interactive-wheel-section .add-to-cart-btn {
+                  width: 100%;
+                  padding: 1rem;
+                  border-radius: 0.75rem;
+                  border: 1px solid #444;
+                  background: transparent;
+                  color: white;
+                  font-size: 1rem;
+                  font-weight: 500;
+                  cursor: pointer;
+                  transition: all 0.2s;
+                }
+                #interactive-wheel-section .add-to-cart-btn:hover { background: white; color: black; }
+
+                #interactive-wheel-section .sizing-accordion {
+                  border-top: 1px solid #333;
+                  padding-top: 1rem;
+                  margin-bottom: 1.5rem;
+                }
+                #interactive-wheel-section .sizing-accordion-header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  cursor: pointer;
+                  color: white;
+                  font-weight: 500;
+                  background: none;
+                  border: none;
+                  width: 100%;
+                  padding: 0;
+                  font-size: 0.95rem;
+                }
+            </style>
+
+            <!-- Click overlay to deselect -->
+            <div id="bg-overlay" class="absolute inset-0 z-0" style="display:none;"></div>
+
+            <!-- Product Wheel -->
+            <div class="wheel-container" id="product-wheel"></div>
+
+            <!-- Detail Panel -->
+            <div id="product-panel" class="absolute right-[5%] top-1/2 -translate-y-1/2 bg-[#1a1a1a] text-white rounded-[1.5rem] px-5 py-4 w-[22rem] flex items-center justify-between gap-4 opacity-0 pointer-events-none z-50 translate-x-8 shadow-2xl">
+              <div class="flex-1 min-w-0 text-left">
+                <h3 class="font-medium text-[1.05rem] mb-1 truncate" id="panel-title"></h3>
+                <p class="text-gray-400 text-sm" id="panel-price"></p>
+              </div>
+              <button id="open-btn" class="open-btn-container transition-all">
+                <img src="" class="w-full h-full object-contain" id="panel-btn-img" alt="">
+                <span class="open-btn-label">Open</span>
+              </button>
+            </div>
+
+            <!-- Product Detail Page -->
+            <div id="product-detail" class="product-detail-overlay">
+              <div class="detail-left">
+                <img id="detail-main-img" src="" alt="">
+                <div class="detail-thumbs" id="detail-thumbs"></div>
+              </div>
+              <div class="detail-right">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                  <div>
+                    <h2 id="detail-title"></h2>
+                    <p class="detail-price" id="detail-price"></p>
+                  </div>
+                  <button class="detail-close-btn" id="detail-close-btn">
+                    <img id="detail-close-img" src="" alt="">
+                    <span class="detail-close-label">Close</span>
+                  </button>
+                </div>
+                <p class="detail-desc" id="detail-desc"></p>
+                <div class="sizing-accordion">
+                  <button class="sizing-accordion-header" id="sizing-toggle">
+                    <span>Sizing</span>
+                    <span id="sizing-icon">+</span>
+                  </button>
+                </div>
+                <div class="size-options" id="size-options">
+                  <button class="size-btn">XS</button>
+                  <button class="size-btn">S</button>
+                  <button class="size-btn selected">M</button>
+                  <button class="size-btn">L</button>
+                  <button class="size-btn">XL</button>
+                  <button class="size-btn">2XL</button>
+                </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+            </div>
+
+            <script>
+                const wheelProducts = [
+                  { name: 'Core Black Hoodie', price: '$85.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-black-hoodie-front.png?v=1780053097', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-black-hoodie-back.png?v=1780070496', desc: 'A statement in elevated comfort. Crafted from heavyweight 500gsm organic cotton, offering a structured silhouette with a soft, brushed interior finish.' },
+                  { name: 'Schematic Longsleeve Tee', price: '$55.00', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/schematic-longsleeve-front.png?v=1780053340', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/schematic-longsleeve-back.png?v=1780053340', desc: 'Premium longsleeve tee with a unique schematic design. Made from 100% organic cotton for all-day comfort.' },
+                  { name: 'Expressive Tee', price: '$41.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/expressive-tee-front.png?v=1780052951', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/expressive-tee-back.png?v=1780052951', desc: 'Express yourself with this premium tee, crafted from soft organic cotton with a relaxed fit.' },
+                  { name: 'Core Cap', price: '$34.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-cap-front.png?v=1780052836', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-cap-front.png?v=1780052836', desc: 'Classic unstructured cap with embroidered logo. Adjustable strap for a perfect fit.' },
+                  { name: 'Kinetic Tee', price: '$41.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/kinetic-tee-front.png?v=1780053256', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/kinetic-tee-back.png?v=1780053256', desc: 'Dynamic design meets everyday comfort. Heavyweight organic cotton with a clean classic fit.' },
+                  { name: 'Chladni Tote Bag', price: '$24.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/tote-front.png?v=1780052519', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/tote-back.png?v=1780301430', desc: 'Sturdy canvas tote bag featuring the Chladni pattern. Perfect for everyday carry.' },
+                  { name: 'Research Preview Cap', price: '$34.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/research-preview-cap-front.png?v=1780052774', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/research-preview-cap-side.png?v=1780052773', desc: 'Limited edition cap with a research preview embroidery. Adjustable closure.' },
+                  { name: 'Reverb Longsleeve Tee', price: '$55.00', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/reverb-longsleeve-front.png?v=1780053317', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/reverb-longsleeve-back.png?v=1780070181', desc: 'A premium longsleeve with reverb-inspired graphic. Soft hand feel with structured construction.' },
+                  { name: 'Core Tee', price: '$41.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-tee-front.png?v=1780053131', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-tee-back.png?v=1780301637', desc: 'The essential core tee. Clean, minimal design in premium organic cotton.' },
+                  { name: 'Employee Tee', price: '$41.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/employee-tee-front.png?v=1780052707', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/employee-tee-back.png?v=1780301815', desc: 'Wear it like you work here. Premium cotton tee with subtle branding.' },
+                  { name: 'Wave Hoodie', price: '$85.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/wave-hoodie-front.png?v=1780053289', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/wave-hoodie-back.png?v=1780070626', desc: 'Premium heavyweight hoodie with wave-inspired design. 500gsm organic cotton.' },
+                  { name: 'Core Crew Sweatshirt', price: '$75.00', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-crew-front.png?v=1780052909', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/core-crew-back.png?v=1780301939', desc: 'Classic crew sweatshirt in heavyweight organic cotton. Brushed interior for warmth.' },
+                  { name: '11_11 Crew Sweatshirt', price: '$75.00', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/11-11-crew-front_fb8efabc-8659-4bcc-b66c-c6102044ae18.png?v=1780053477', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/11-11-crew-back_e39ad985-f5b6-43e7-8548-c0548782e598.png?v=1780067125', desc: 'Limited edition crew with the iconic 11:11 design. Premium heavyweight construction.' },
+                  { name: '11_11 Water Bottle', price: '$29.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/nalgene-front_a4c6a823-d646-41c2-8132-daaec5222b9d.png?v=1780052440', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/nalgene-back.png?v=1780052438', desc: 'Durable Nalgene water bottle with custom 11:11 design. 1000ml capacity.' },
+                  { name: 'Research Preview Hoodie', price: '$85.99', front: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/research-preview-hoodie-font.png?v=1780052640', back: 'https://cdn.shopify.com/s/files/1/0999/0412/7311/files/research-preview-hoodie-back_e4d98a9d-d94f-4705-a678-0e611bb2b5a1.png?v=1780066397', desc: 'Limited research preview hoodie. Heavyweight 500gsm organic cotton with structured silhouette.' }
+                ];
+
+                const wheel = document.getElementById('product-wheel');
+                const wheelSection = document.getElementById('interactive-wheel-section');
+                const RADIUS = 38; // vmin
+                const TARGET_ANGLE = 90; 
+                let wheelRotation = 0;
+                let activeIndex = -1;
+                let animatingRotation = false;
+
+                // Generate DOM elements
+                const productElements = [];
+                wheelProducts.forEach((product, index) => {
+                  const angle = (index * 360) / wheelProducts.length;
+                  const wrapper = document.createElement('div');
+                  wrapper.className = 'product-wrapper';
+                  wrapper.dataset.baseAngle = angle;
+                  wrapper.dataset.index = index;
+                  
+                  const imgContainer = document.createElement('div');
+                  imgContainer.className = 'image-container';
+
+                  const frontImg = document.createElement('img');
+                  frontImg.src = product.front;
+                  frontImg.className = 'product-img product-img-front';
+                  frontImg.draggable = false;
+
+                  const backImg = document.createElement('img');
+                  backImg.src = product.back;
+                  backImg.className = 'product-img product-img-back';
+                  backImg.draggable = false;
+
+                  imgContainer.appendChild(frontImg);
+                  imgContainer.appendChild(backImg);
+                  wrapper.appendChild(imgContainer);
+                  wheel.appendChild(wrapper);
+                  productElements.push(wrapper);
+
+                  wrapper.addEventListener('click', () => {
+                    if (activeIndex === index) return;
+                    if (animatingRotation) return;
+                    selectProduct(index);
+                  });
+                });
+
+                const bgOverlay = document.getElementById('bg-overlay');
+
+                function selectProduct(index) {
+                  if (animatingRotation) return;
+                  const product = wheelProducts[index];
+                  
+                  const baseAngle = parseFloat(productElements[index].dataset.baseAngle);
+                  const targetWheelRotation = TARGET_ANGLE - baseAngle;
+                  
+                  let rotationDelta = targetWheelRotation - wheelRotation;
+                  while (rotationDelta > 180) rotationDelta -= 360;
+                  while (rotationDelta < -180) rotationDelta += 360;
+                  
+                  const finalRotation = wheelRotation + rotationDelta;
+
+                  wheel.style.transform = `translate(calc(-133vmin - 10vw), 0) scale(3.5)`;
+
+                  document.getElementById('panel-title').textContent = product.name;
+                  document.getElementById('panel-price').textContent = product.price;
+                  document.getElementById('panel-btn-img').src = product.front;
+
+                  const panel = document.getElementById('product-panel');
+                  panel.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-8');
+                  panel.classList.add('opacity-100', 'pointer-events-auto', 'translate-x-0');
+                  bgOverlay.style.display = 'block';
+
+                  productElements.forEach(el => el.classList.remove('active'));
+                  productElements[index].classList.add('active');
+                  activeIndex = index;
+
+                  animatingRotation = true;
+                  const startRotation = wheelRotation;
+                  const startTime = performance.now();
+                  const duration = 600;
+
+                  function animateWheel(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    
+                    wheelRotation = startRotation + (finalRotation - startRotation) * eased;
+                    updatePositions();
+
+                    if (progress < 1) {
+                      requestAnimationFrame(animateWheel);
+                    } else {
+                      wheelRotation = finalRotation;
+                      updatePositions();
+                      animatingRotation = false;
+                    }
+                  }
+                  requestAnimationFrame(animateWheel);
+                }
+
+                function updatePositions() {
+                  productElements.forEach((el) => {
+                    const baseAngle = parseFloat(el.dataset.baseAngle);
+                    const currentAngle = baseAngle + wheelRotation;
+                    const rad = (currentAngle - 90) * (Math.PI / 180);
+                    const x = Math.cos(rad) * RADIUS;
+                    const y = Math.sin(rad) * RADIUS;
+                    el.style.transform = `translate(calc(-50% + ${x}vmin), calc(-50% + ${y}vmin)) scale(1)`;
+                    el.style.opacity = '1';
+                  });
+                }
+
+                function closeDetail() {
+                  if (activeIndex === -1) return;
+                  activeIndex = -1;
+                  wheel.style.transform = `translateX(0) scale(1)`;
+                  productElements.forEach(el => el.classList.remove('active'));
+                  const panel = document.getElementById('product-panel');
+                  panel.classList.add('opacity-0', 'pointer-events-none', 'translate-x-8');
+                  panel.classList.remove('opacity-100', 'pointer-events-auto', 'translate-x-0');
+                  bgOverlay.style.display = 'none';
+                  updatePositions();
+                }
+
+                bgOverlay.addEventListener('click', closeDetail);
+
+                document.getElementById('open-btn').addEventListener('click', () => {
+                  if (activeIndex === -1) return;
+                  openProductDetail(activeIndex);
+                });
+
+                function openProductDetail(index) {
+                  const product = wheelProducts[index];
+                  const overlay = document.getElementById('product-detail');
+                  document.getElementById('detail-title').textContent = product.name;
+                  document.getElementById('detail-price').textContent = product.price;
+                  document.getElementById('detail-desc').textContent = product.desc;
+                  document.getElementById('detail-main-img').src = product.front;
+                  document.getElementById('detail-close-img').src = product.front;
+
+                  const thumbsContainer = document.getElementById('detail-thumbs');
+                  thumbsContainer.innerHTML = '';
+                  [product.front, product.back].forEach((src, i) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    if (i === 0) img.classList.add('active-thumb');
+                    img.addEventListener('click', () => {
+                      document.getElementById('detail-main-img').src = src;
+                      thumbsContainer.querySelectorAll('img').forEach(t => t.classList.remove('active-thumb'));
+                      img.classList.add('active-thumb');
+                    });
+                    thumbsContainer.appendChild(img);
+                  });
+
+                  overlay.classList.add('visible');
+                  document.getElementById('product-panel').classList.add('opacity-0', 'pointer-events-none');
+                  wheel.style.opacity = '0';
+                }
+
+                document.getElementById('detail-close-btn').addEventListener('click', () => {
+                  document.getElementById('product-detail').classList.remove('visible');
+                  document.getElementById('product-panel').classList.remove('opacity-0', 'pointer-events-none');
+                  wheel.style.opacity = '1';
+                });
+
+                document.querySelectorAll('.size-btn').forEach(btn => {
+                  btn.addEventListener('click', () => {
+                    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                  });
+                });
+
+                updatePositions();
+
+                // Bind wheel listener directly to the round wheel instead of the full section
+                wheel.addEventListener('wheel', (e) => {
+                  if (document.getElementById('product-detail').classList.contains('visible')) return;
+                  e.preventDefault(); // Prevent page scroll when interacting with the wheel
+                  if (animatingRotation) return;
+                  
+                  if (activeIndex !== -1) {
+                    let nextIndex = activeIndex + (e.deltaY > 0 ? 1 : -1);
+                    if (nextIndex >= wheelProducts.length) nextIndex = 0;
+                    if (nextIndex < 0) nextIndex = wheelProducts.length - 1;
+                    selectProduct(nextIndex);
+                  } else {
+                    wheelRotation += e.deltaY * 0.05;
+                    updatePositions();
+                  }
+                }, { passive: false });
+
+                let touchStartY = 0;
+                wheel.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+                wheel.addEventListener('touchmove', (e) => {
+                  if (document.getElementById('product-detail').classList.contains('visible')) return;
+                  e.preventDefault(); // Prevent page scroll when interacting with the wheel
+                  if (animatingRotation) return;
+                  
+                  const deltaY = touchStartY - e.touches[0].clientY;
+                  touchStartY = e.touches[0].clientY;
+                  if (Math.abs(deltaY) < 5) return;
+                  
+                  if (activeIndex !== -1) {
+                    let nextIndex = activeIndex + (deltaY > 0 ? 1 : -1);
+                    if (nextIndex >= wheelProducts.length) nextIndex = 0;
+                    if (nextIndex < 0) nextIndex = wheelProducts.length - 1;
+                    selectProduct(nextIndex);
+                  } else {
+                    wheelRotation += deltaY * 0.1;
+                    updatePositions();
+                  }
+                }, { passive: false });
+
+                window.addEventListener('keydown', (e) => {
+                  if (e.key === 'Escape') {
+                    if (document.getElementById('product-detail').classList.contains('visible')) {
+                      document.getElementById('detail-close-btn').click();
+                    } else if (activeIndex !== -1) {
+                      closeDetail();
+                    }
+                  }
+                });
+            </script>
+
+            <script>
+                // Featured Products Horizontal Scroll & Drag
+                const slider = document.getElementById('featured-scroll');
+                const btnLeft = document.getElementById('btn-scroll-left');
+                const btnRight = document.getElementById('btn-scroll-right');
+
+                // Button clicks
+                if(btnLeft) btnLeft.addEventListener('click', () => { slider.scrollBy({ left: -350, behavior: 'smooth' }); });
+                if(btnRight) btnRight.addEventListener('click', () => { slider.scrollBy({ left: 350, behavior: 'smooth' }); });
+
+                // Mouse Dragging
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                slider.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    slider.classList.add('active');
+                    startX = e.pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                    // Disable snap while dragging
+                    slider.style.scrollSnapType = 'none';
+                });
+                slider.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    slider.classList.remove('active');
+                    slider.style.scrollSnapType = '';
+                });
+                slider.addEventListener('mouseup', () => {
+                    isDown = false;
+                    slider.classList.remove('active');
+                    slider.style.scrollSnapType = '';
+                });
+                slider.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - slider.offsetLeft;
+                    const walk = (x - startX) * 2; // Scroll speed multiplier
+                    slider.scrollLeft = scrollLeft - walk;
+                });
+            </script>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="w-full bg-[#03060a] text-white pt-24 pb-12 px-6 lg:px-16">
+            <div class="max-w-[1440px] mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 mb-20">
+                    <!-- Column 1: Logo and Socials -->
+                    <div class="flex flex-col items-start pl-0 md:pl-8">
+                        <div class="flex flex-col items-center mb-8">
+                            <!-- Logo Image -->
+                            <img src="./assets/TPL%20logo.png" alt="TPLS Logo" class="h-12 w-auto object-contain mb-3">
+                            <span class="text-xl font-semibold tracking-[0.25em] uppercase text-white">TPLS</span>
+                        </div>
+                        <div class="flex space-x-6 text-white ml-2">
+                            <a href="#" class="hover:text-gray-400 transition-colors">
+                                <iconify-icon icon="mdi:instagram" class="text-lg"></iconify-icon>
+                            </a>
+                            <a href="#" class="hover:text-gray-400 transition-colors">
+                                <iconify-icon icon="mdi:youtube" class="text-lg"></iconify-icon>
+                            </a>
+                            <a href="#" class="hover:text-gray-400 transition-colors">
+                                <iconify-icon icon="ic:baseline-tiktok" class="text-lg"></iconify-icon>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Quick Links -->
+                    <div class="flex flex-col pt-2 pl-0 md:pl-12">
+                        <h4 class="text-base font-semibold mb-6 tracking-wide text-white">Quick Link</h4>
+                        <div class="flex flex-col space-y-4 text-[13px] text-gray-300">
+                            <a href="#" class="hover:text-white transition-colors">Shop for Men</a>
+                            <a href="#" class="hover:text-white transition-colors">Shop for Woman</a>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Subscribe -->
+                    <div class="flex flex-col pt-2 max-w-sm">
+                        <h4 class="text-base font-semibold mb-4 tracking-wide text-white">Subscribe</h4>
+                        <p class="text-[13px] text-gray-300 leading-relaxed mb-8">
+                            Subscribe for exclusive offers, original stories, activism awareness, events and more.
+                        </p>
+                        <form class="flex items-end w-full">
+                            <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-gray-600 pb-2 text-[13px] text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors" required>
+                            <button type="submit" class="bg-white text-black text-[13px] font-semibold px-6 py-2 ml-4 hover:bg-gray-200 transition-colors shrink-0">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="pt-8 border-t border-gray-800 flex flex-col justify-start text-[12px] text-gray-500">
+                    <p>&copy;2026 TPLS | All Right Reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- AI Assistant Floating Button -->
+        <button class="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-[#03060a] text-white w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all z-50 group border border-gray-800">
+            <iconify-icon icon="lucide:sparkles" class="text-2xl md:text-3xl group-hover:text-gray-300 transition-colors"></iconify-icon>
+        </button>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Satoshi', 'sans-serif'],
+          },
+          colors: {
+            bgDark: '#0B0D11',
+            panelDark: '#12141A',
+            cardDark: '#1A1D24',
+            purpleAccent: '#7C3AED',
+            purpleLight: '#8B5CF6',
+            textGray: '#9CA3AF',
+            borderGray: '#272A35'
+          },
+          backgroundImage: {
+            'gradient-purple': 'linear-gradient(135deg, #7C3AED 0%, #4C1D95 100%)',
+            'gradient-dark': 'linear-gradient(to bottom right, #12141A, #0B0D11)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-panel {
+      background: rgba(18, 20, 26, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(39, 42, 53, 0.5);
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(124, 58, 237, 0.1);
+      border-color: rgba(124, 58, 237, 0.3);
+    }
+
+
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0D11;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #272A35;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4C1D95;
+    }
+  </style>
+</head>
+<body class="bg-bgDark text-white font-sans antialiased overflow-x-hidden">
+  <div class="min-h-screen flex flex-col p-4 md:p-6 lg:p-8 w-full max-w-[1600px] mx-auto gap-6">
+    
+    <!-- Header Navigation -->
+    <header class="flex items-center justify-between glass-panel rounded-2xl p-3 px-6 sticky top-4 z-50">
+      <div class="flex items-center gap-8">
+        <!-- Logo -->   
+        <a href="/" class="flex items-center justify-center h-10">
+          <img src="./public/TPLS.png" alt="TPL Logo" class="h-8 w-auto object-contain" style="filter: brightness(0) invert(1);" />
+        </a>
+
+        <!-- Main Nav -->
+        <nav class="hidden md:flex items-center gap-1">
+          <a href="#" class="flex items-center gap-2 px-4 py-2.5 bg-cardDark border border-borderGray rounded-full text-sm font-medium text-white transition-colors">
+            <iconify-icon icon="lucide:layout-dashboard" class="text-purpleLight"></iconify-icon>
+            Market News
+          </a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Join TPLS -->
+        <a href="#" class="flex items-center gap-2 px-5 py-2.5 bg-gradient-purple rounded-full text-sm font-bold text-white shadow-lg shadow-purpleAccent/20 hover:opacity-90 transition-all">
+          <iconify-icon icon="mdi:discord" class="text-lg"></iconify-icon>
+          Join TPLS
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-cardDark border border-borderGray text-white">
+          <iconify-icon icon="lucide:menu"></iconify-icon>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left Main Section (Spans 9 cols on lg) -->
+      <div class="lg:col-span-9 flex flex-col gap-6">
+        
+        <!-- Top Hero Panel -->
+        <div class="glass-panel rounded-3xl p-6 relative overflow-hidden min-h-[400px] w-full">
+          <!-- Decorative Background Elements -->
+          <div class="absolute top-0 right-0 w-[600px] h-[400px] bg-purpleAccent opacity-10 blur-[100px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/4"></div>
+          
+          <!-- Empty Content Placeholder -->
+        </div>
+
+
+      </div>
+
+      <!-- Right Sidebar Section (Spans 3 cols on lg) -->
+      <div class="lg:col-span-3 flex flex-col gap-6">
+        <!-- Support Widget -->
+        <div class="glass-panel rounded-3xl p-6 flex flex-col items-center justify-center text-center h-full min-h-[850px] relative overflow-hidden">
+          <!-- Soft gradient bg -->
+          <div class="absolute inset-0 bg-gradient-to-b from-purpleAccent/10 to-transparent pointer-events-none"></div>
+          
+          <!-- Empty Content Placeholder -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
