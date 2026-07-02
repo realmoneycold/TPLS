@@ -4,6 +4,17 @@ import { Link } from 'react-router-dom';
 
 export default function Trading() {
     useEffect(() => {
+        // Scroll to hash on mount
+        if (window.location.hash) {
+            const id = window.location.hash.substring(1);
+            const el = document.getElementById(id);
+            if (el) {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                }, 200);
+            }
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -83,17 +94,17 @@ export default function Trading() {
             <div className="max-w-[1600px] mx-auto px-6 lg:px-10 h-[60px] flex items-center justify-between reveal-down">
                 {/* Logo */}
                 <Link to="/trading" className="flex items-center gap-2 shrink-0">
-                    <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center">
-                        <iconify-icon icon="lucide:x" className="text-black text-[14px] font-bold stroke-[3]"></iconify-icon>
-                    </div>
+                    <img src="/TPL logo.png" alt="TPLS Logo" className="w-7 h-7 object-contain" />
                     <span className="text-xl font-medium tracking-tight mt-0.5 text-white">TPLS</span>
                 </Link>
 
-                {/* Desktop Menu */}
+        {/* Desktop Menu */}
                 <div
                     className="hidden lg:flex items-center bg-[#151515] rounded-full px-1.5 py-1 border border-white/10 shadow-2xl">
                     <Link to="/trading"
                         className="px-5 py-2 text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors">Home</Link>
+                    <a href="#compare"
+                        className="px-5 py-2 text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors">Memberships</a>
                     <Link to="/about"
                         className="px-5 py-2 text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors">About Us</Link>
                     <Link to="/faq"
@@ -180,7 +191,7 @@ export default function Trading() {
                         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                             <a href="#compare"
                                 className="group flex items-center justify-between gap-5 px-1.5 py-1.5 pl-6 border border-white/60 rounded-full hover:border-white transition-all bg-transparent w-full sm:w-auto">
-                                <span className="text-[15px] font-medium text-white">Get Funded</span>
+                                <span className="text-[15px] font-medium text-white">Join the Community</span>
                                 <div
                                     className="w-[34px] h-[34px] bg-white rounded-xl flex items-center justify-center text-black group-hover:scale-105 transition-transform">
                                     <iconify-icon icon="ph:arrow-right" className="text-lg"></iconify-icon>

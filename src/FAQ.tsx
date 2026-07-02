@@ -81,15 +81,14 @@ export default function FAQ() {
             <div className="max-w-[1600px] mx-auto px-6 lg:px-10 h-[60px] flex items-center justify-between">
                 {/* Logo */}
                 <Link to="/trading" className="flex items-center gap-2 shrink-0">
-                    <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center">
-                        <iconify-icon icon="lucide:x" className="text-black text-[14px] font-bold stroke-[3]"></iconify-icon>
-                    </div>
+                    <img src="/TPL logo.png" alt="TPLS Logo" className="w-7 h-7 object-contain" />
                     <span className="text-xl font-medium tracking-tight mt-0.5 text-white">TPLS</span>
                 </Link>
 
                 {/* Desktop Menu */}
                 <div className="hidden lg:flex items-center bg-[#151515] rounded-full px-1.5 py-1 border border-white/10 shadow-2xl">
                     <Link to="/trading" className="px-5 py-2 text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors">Home</Link>
+                    <Link to="/trading#compare" className="px-5 py-2 text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors">Memberships</Link>
                     <Link to="/about" className="px-5 py-2 text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors">About Us</Link>
                     <Link to="/faq" className="px-5 py-2 text-[13px] font-medium text-white hover:bg-white/10 rounded-full transition-colors">FAQ</Link>
                     <Link to="/contact" className="px-5 py-2 text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/10 rounded-full transition-colors">Contact us</Link>
@@ -258,9 +257,7 @@ export default function FAQ() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16 reveal">
                     <div>
                         <Link to="/trading" className="flex items-center gap-2 mb-6">
-                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-                                <iconify-icon icon="lucide:x" className="text-black text-[16px] font-bold stroke-[3]"></iconify-icon>
-                            </div>
+                            <img src="/TPL logo.png" alt="TPLS Logo" className="w-8 h-8 object-contain" />
                             <span className="text-xl font-medium tracking-tight mt-0.5 text-white">TPLS</span>
                         </Link>
                         <p className="text-white/40 text-sm leading-relaxed max-w-xs">
