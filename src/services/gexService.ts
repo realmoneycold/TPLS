@@ -115,7 +115,8 @@ let profileCache: { [key: string]: GexProfileItem[] } = {};
 
 export const fetchGexLevels = async (ticker: string): Promise<GexLevels> => {
   try {
-    const response = await fetch(`http://localhost:8000/api/gex/${ticker}/`);
+    const baseUrl = import.meta.env.PROD ? '/api' : 'http://localhost:8000/api';
+    const response = await fetch(`${baseUrl}/gex/${ticker}/`);
     const data = await response.json();
     
     if (!response.ok || data.error) {

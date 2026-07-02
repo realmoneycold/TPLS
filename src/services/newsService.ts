@@ -86,7 +86,8 @@ export const fetchEconomicCalendar = async (startDate?: string, endDate?: string
   }
 
   try {
-    let url = 'http://localhost:8000/api/calendar/';
+    const baseUrl = import.meta.env.PROD ? '/api' : 'http://localhost:8000/api';
+    let url = `${baseUrl}/calendar/`;
     if (startDate && endDate) {
         url += `?start=${startDate}&end=${endDate}`;
     }
@@ -119,7 +120,8 @@ export const fetchMarketNews = async (category: string = 'general'): Promise<Mar
   }
 
   try {
-    const response = await fetch('http://localhost:8000/api/live-news/');
+    const baseUrl = import.meta.env.PROD ? '/api' : 'http://localhost:8000/api';
+    const response = await fetch(`${baseUrl}/live-news/`);
     if (!response.ok) throw new Error('Live news fetch failed');
     const data = await response.json();
     

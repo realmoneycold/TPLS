@@ -104,59 +104,55 @@ export default function MarketNews() {
   useEffect(() => {
     let interval: NodeJS.Timeout;
     const loadNewsData = async () => {
-      if (activeTab === 'news') {
-        setNewsLoading(true);
-        try {
-          const { start, end } = getWeekRange(weekOffset);
-          const startStr = start.toISOString().split('T')[0];
-          const endStr = end.toISOString().split('T')[0];
+      setNewsLoading(true);
+      try {
+        const { start, end } = getWeekRange(weekOffset);
+        const startStr = start.toISOString().split('T')[0];
+        const endStr = end.toISOString().split('T')[0];
 
-          const [events, news] = await Promise.all([
-            fetchEconomicCalendar(startStr, endStr),
-            fetchMarketNews('general')
-          ]);
-          previousNewsIds.current = new Set(news.map(n => n.id));
-          setCalendarEvents(events);
-          setLiveNews(news);
-        } catch (e) {
-          console.error(e);
-        } finally {
-          setNewsLoading(false);
-        }
+        const [events, news] = await Promise.all([
+          fetchEconomicCalendar(startStr, endStr),
+          fetchMarketNews('general')
+        ]);
+        previousNewsIds.current = new Set(news.map(n => n.id));
+        setCalendarEvents(events);
+        setLiveNews(news);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setNewsLoading(false);
       }
     };
 
     loadNewsData();
 
-    if (activeTab === 'news') {
-      interval = setInterval(() => {
-        fetchMarketNews('general').then(news => {
-          let shouldDing = false;
-          const marketKeywords = ['trump', 'iran', 'fed', 'fomc', 'powell', 'ecb', 'biden', 'putin', 'russia', 'china', 'opec', 'sec', 'war', 'missile', 'attack'];
+    interval = setInterval(() => {
+      fetchMarketNews('general').then(news => {
+        let shouldDing = false;
+        const marketKeywords = ['trump', 'iran', 'fed', 'fomc', 'powell', 'ecb', 'biden', 'putin', 'russia', 'china', 'opec', 'sec', 'war', 'missile', 'attack'];
 
-          news.forEach(item => {
-            if (!previousNewsIds.current.has(item.id)) {
-              const fullText = `${item.headline} ${item.summary || ''}`.toLowerCase();
-              if (marketKeywords.some(kw => fullText.includes(kw))) {
-                shouldDing = true;
-              }
+        news.forEach(item => {
+          if (!previousNewsIds.current.has(item.id)) {
+            const fullText = `${item.headline} ${item.summary || ''}`.toLowerCase();
+            if (marketKeywords.some(kw => fullText.includes(kw))) {
+              shouldDing = true;
             }
-          });
-
-          if (shouldDing) {
-            alertSound.current.play().catch(e => console.log('Audio autoplay prevented by browser. User interaction needed first.', e));
           }
+        });
 
-          previousNewsIds.current = new Set(news.map(n => n.id));
-          setLiveNews(news);
-        }).catch(console.error);
-      }, 10000); // 10 seconds
-    }
+        if (shouldDing) {
+          alertSound.current.play().catch(e => console.log('Audio autoplay prevented by browser. User interaction needed first.', e));
+        }
+
+        previousNewsIds.current = new Set(news.map(n => n.id));
+        setLiveNews(news);
+      }).catch(console.error);
+    }, 10000); // 10 seconds
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [activeTab, weekOffset]);
+  }, [weekOffset]);
 
   const getImpactIcon = (impact: string) => {
     switch (impact?.toLowerCase()) {
@@ -681,7 +677,7 @@ export default function MarketNews() {
           {/* Right Sidebar Section */}
           <div className="lg:col-span-3 flex flex-col gap-6">
 
-            {activeTab === 'gex' ? (
+            {activeTab === 'gex' && (
               <>
                 {/* Expirations Card */}
                 <div className="glass-panel rounded-3xl p-6 flex flex-col w-full border border-borderGray">
@@ -745,9 +741,9 @@ export default function MarketNews() {
                   </div>
                 </div>
               </>
-            ) : (
-              <>
-                {/* Unified Live Feed Card */}
+            )}
+
+            {/* Unified Live Feed Card */}
                 <div className="glass-panel rounded-3xl p-6 flex flex-col w-full border border-borderGray flex-1 min-h-[600px] max-h-[850px]">
 
                   {/* Header */}
@@ -826,8 +822,6 @@ export default function MarketNews() {
                     )}
                   </div>
                 </div>
-              </>
-            )}
 
           </div>
 
