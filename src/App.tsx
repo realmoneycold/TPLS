@@ -71,6 +71,12 @@ export default function App() {
   ]);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [isThinking, setIsThinking] = useState(false);
+  const [introComplete, setIntroComplete] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIntroComplete(true), 2800);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -134,6 +140,71 @@ export default function App() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden text-white font-sans bg-transparent flex flex-col justify-between selection:bg-white/20">
 
+      {/* === Premium Intro Splash Animation === */}
+      <AnimatePresence>
+        {!introComplete && (
+          <motion.div
+            key="intro-overlay"
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050a14]"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Subtle radial glow behind logo */}
+            <motion.div
+              className="absolute w-[400px] h-[400px] rounded-full bg-blue-600/15 blur-[120px]"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1.2, opacity: 1 }}
+              transition={{ duration: 1.8, ease: "easeOut" }}
+            />
+
+            {/* Logo */}
+            <motion.img
+              src={tplLogo}
+              alt="TPLS"
+              className="w-20 h-20 object-contain relative z-10"
+              initial={{ scale: 0.3, opacity: 0, filter: "blur(12px)" }}
+              animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            />
+
+            {/* Brand Name */}
+            <motion.p
+              className="text-2xl font-semibold tracking-[0.35em] uppercase text-white/90 mt-6 relative z-10"
+              initial={{ opacity: 0, y: 20, letterSpacing: "0.6em" }}
+              animate={{ opacity: 1, y: 0, letterSpacing: "0.35em" }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              TPLS
+            </motion.p>
+
+            {/* Tagline */}
+            <motion.p
+              className="text-xs tracking-[0.25em] uppercase text-white/40 mt-3 relative z-10"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Every Tick, His Glory
+            </motion.p>
+
+            {/* Loading bar */}
+            <motion.div
+              className="mt-10 h-[2px] rounded-full bg-blue-500/40 relative z-10 overflow-hidden"
+              initial={{ width: 0 }}
+              animate={{ width: 120 }}
+              transition={{ duration: 2.2, delay: 0.5, ease: "easeInOut" }}
+            >
+              <motion.div
+                className="h-full bg-blue-400 rounded-full"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 2.2, delay: 0.5, ease: "easeInOut" }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Autoplay, looping, muted video background - positioned on the right side behind the widgets */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         <video
@@ -170,7 +241,7 @@ export default function App() {
           <motion.div
             className="relative z-10 flex flex-col flex-1 p-6 lg:p-12 justify-between h-full"
             initial="hidden"
-            animate="visible"
+            animate={introComplete ? "visible" : "hidden"}
             variants={containerVariants}
           >
 
@@ -291,7 +362,7 @@ export default function App() {
               {/* Explore Memberships button */}
               <motion.div variants={itemVariants} className="mb-5">
                 <button
-                  onClick={() => setGenerationCount(prev => prev + 1)}
+                  onClick={() => navigate('/trading')}
                   className="flex items-center gap-5 px-9 py-3 rounded-full bg-blue-600 border border-blue-400/30 hover:bg-blue-500 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_0_25px_rgba(37,99,235,0.4)]"
                 >
                   <span className="text-base font-semibold tracking-wide text-white">
@@ -308,12 +379,17 @@ export default function App() {
                 className="flex flex-wrap items-center justify-center gap-3"
                 variants={itemVariants}
               >
-                 {["Trading Academy", "Market Analysis", "Apparel Collection"].map((label) => (
+                 {[
+                   { label: "Trading Academy", path: "/trading" },
+                   { label: "Market Analysis", path: "/market-news" },
+                   { label: "Apparel Collection", path: "/apparel" },
+                 ].map((item) => (
                   <span
-                    key={label}
+                    key={item.label}
+                    onClick={() => navigate(item.path)}
                     className="px-5 py-2 rounded-full text-xs font-medium text-white select-none hover:scale-105 transition-transform cursor-pointer bg-black/45 hover:bg-black/60 backdrop-blur-md border border-white/20 shadow-sm"
                   >
-                    {label}
+                    {item.label}
                   </span>
                 ))}
               </motion.div>
@@ -345,10 +421,30 @@ export default function App() {
         </div>
 
         {/* Right Panel (Desktop Only - 48% width) */}
-        <div className="hidden lg:flex lg:w-[48%] flex-col justify-between p-4 gap-4 z-10 relative">
+        <motion.div
+          className="hidden lg:flex lg:w-[48%] flex-col justify-between p-4 gap-4 z-10 relative"
+          initial="hidden"
+          animate={introComplete ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.18,
+                delayChildren: 0.3,
+              }
+            }
+          }}
+        >
 
           {/* Top Bar */}
-          <div className="flex justify-end items-center gap-3 w-full">
+          <motion.div
+            className="flex justify-end items-center gap-3 w-full"
+            variants={{
+              hidden: { opacity: 0, y: -30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
 
             {/* Social Icons Pill */}
             <div className="glass-card px-4 py-2 rounded-full flex items-center gap-4">
@@ -503,27 +599,52 @@ export default function App() {
               </div>
             </button>
 
-          </div>
+          </motion.div>
 
           {/* Ecosystem Widget with updated TPLS branding */}
-          <div className="flex justify-end w-full">
+          <motion.div
+            className="flex justify-end w-full"
+            variants={{
+              hidden: { opacity: 0, x: 40 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
             <div className="glass-card p-6 rounded-2xl w-72 hover:scale-[1.02] transition-transform duration-300 text-left">
               <p className="text-sm font-semibold tracking-wide mb-2 text-white/95">Every Tick, His Glory</p>
               <p className="text-sm font-light text-white/70 leading-relaxed">
                 TPLS builds and operates premium lifestyle brands—clothing, trading education, and consumer goods—for those who lead with purpose.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Bottom Feature Section Container */}
-          <div className="mt-auto glass-card-transparent p-3 rounded-[2.5rem] w-full flex flex-col gap-3">
+          <motion.div
+            className="mt-auto glass-card-transparent p-3 rounded-[2.5rem] w-full flex flex-col gap-3"
+            variants={{
+              hidden: { opacity: 0, y: 40 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
 
             {/* Side-by-Side Cards with updated subtitles */}
-            <div className="flex gap-3">
+            <motion.div
+              className="flex gap-3"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.12, delayChildren: 0.05 }
+                }
+              }}
+            >
 
               {/* Card 1: TPL: Markets */}
-              <div 
+              <motion.div 
                 onClick={() => navigate("/market-news")}
+                variants={{
+                  hidden: { opacity: 0, y: 25, scale: 0.95 },
+                  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+                }}
                 className="border border-white/15 bg-black/45 flex-1 p-5 rounded-[1.8rem] text-left hover:scale-[1.03] hover:bg-black/55 transition-all duration-300 flex flex-col justify-between min-h-[140px] relative overflow-hidden cursor-pointer"
               >
                 <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white mb-4">
@@ -535,11 +656,15 @@ export default function App() {
                     Real-time market analysis and trading signals for informed decisions.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Card 2: TPL: Apparel */}
-              <div 
+              <motion.div 
                 onClick={() => navigate("/apparel")}
+                variants={{
+                  hidden: { opacity: 0, y: 25, scale: 0.95 },
+                  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+                }}
                 className="border border-white/15 bg-black/45 flex-1 p-5 rounded-[1.8rem] text-left hover:scale-[1.03] hover:bg-black/55 transition-all duration-300 flex flex-col justify-between min-h-[140px] relative overflow-hidden cursor-pointer"
               >
                 <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white mb-4">
@@ -551,22 +676,25 @@ export default function App() {
                     Premium lifestyle apparel curated for the modern trader.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-            </div>
+            </motion.div>
 
-            {/* Bottom Accent Card with glowing cyan flower image and updated subtext */}
-            <div 
+            {/* Bottom Accent Card with TPL logo and updated subtext */}
+            <motion.div 
               onClick={() => navigate('/trading')}
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.97 },
+                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+              }}
               className="border border-white/15 bg-black/45 rounded-[1.8rem] flex items-stretch text-left hover:scale-[1.02] hover:bg-black/55 transition-all duration-300 relative overflow-hidden min-h-[110px] cursor-pointer"
             >
-              <div className="w-32 overflow-hidden relative flex-shrink-0">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/10 z-10" />
+              <div className="w-32 overflow-hidden relative flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-blue-950/60 to-black/80">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 z-10" />
                 <img
-                  src={cyanFlower}
-                  alt="Vibrant Glowing Cyan Flower"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
+                  src={tplLogo}
+                  alt="TPLS Logo"
+                  className="w-16 h-16 object-contain relative z-20 drop-shadow-[0_0_15px_rgba(59,130,246,0.35)]"
                 />
               </div>
 
@@ -610,11 +738,11 @@ export default function App() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
       </div>
 
