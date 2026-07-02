@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GoogleGenAI } from "@google/genai";
+import { generateAIChatReply } from "./services/aiConfig";
 import { Sparkles, MessageCircle, X, Send, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Header from './Header';
@@ -170,13 +170,13 @@ export default function Products() {
         throw new Error("API Key is not configured.");
       }
       
-      const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: userMsg,
-      });
+      const reply = await generateAIChatReply(
+        apiKey,
+        [...chatMessages, { role: "user", text: userMsg }],
+        userMsg,
+        "User is browsing the TPL: Products catalog page. Available catalog items include Striped Knit Shirt ($39.99), Signature Denim Shirt ($45.00), Core Black Hoodie ($59.99), Schematic Longsleeve Tee ($29.99), Expressive Tee ($24.99), Kinetic Tee ($24.99), Wave Hoodie ($59.99), Core Crew Sweatshirt ($49.99), Reverb Longsleeve ($34.99), 11_11 Crew Sweatshirt ($49.99), Research Preview Hoodie ($64.99), and Employee Tee ($24.99)."
+      );
       
-      const reply = response.text || "I couldn't generate a response. Please try again.";
       setChatMessages(prev => [...prev, { role: "ai", text: reply }]);
     } catch (err: any) {
       console.error(err);

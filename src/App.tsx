@@ -23,7 +23,7 @@ import {
   BarChart3
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { GoogleGenAI } from "@google/genai";
+import { generateAIChatReply } from "./services/aiConfig";
 // @ts-ignore
 import cyanFlower from "../assets/cyan-flower.png";
 
@@ -67,7 +67,7 @@ export default function App() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatMessage, setChatMessage] = useState("");
   const [chatMessages, setChatMessages] = useState<{role: string; text: string}[]>([
-    { role: "ai", text: "Hello! I'm Markus. How can I help you today?" }
+    { role: "ai", text: "Hello! Welcome to Time Piece Lifestyle (TPLS). I am Markus, your AI assistant. How can I assist you with our community, apparel, or trading education today?" }
   ]);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [isThinking, setIsThinking] = useState(false);
@@ -91,13 +91,13 @@ export default function App() {
         throw new Error("API Key is not configured in .env file.");
       }
       
-      const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: userMsg,
-      });
+      const reply = await generateAIChatReply(
+        apiKey,
+        [...chatMessages, { role: "user", text: userMsg }],
+        userMsg,
+        "User is browsing the home/landing page of TPLS."
+      );
       
-      const reply = response.text || "I couldn't generate a response. Please try again.";
       setChatMessages(prev => [...prev, { role: "ai", text: reply }]);
     } catch (err: any) {
       console.error(err);
@@ -141,7 +141,8 @@ export default function App() {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover object-[72%_center] pointer-events-none scale-105 opacity-85"
+          className="w-full h-full object-cover object-[72%_center] pointer-events-none scale-105 opacity-70"
+          style={{ filter: 'hue-rotate(105deg) brightness(0.65) contrast(1.2)' }}
         >
           <source
             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4"
@@ -150,12 +151,12 @@ export default function App() {
         </video>
       </div>
 
-      {/* Radiant neon-green and cyan cosmic rim-light glow for the planet */}
-      <div className="absolute top-[5%] right-[-15%] w-[110vh] h-[110vh] rounded-full bg-emerald-500/22 blur-[130px] pointer-events-none z-0 mix-blend-screen" />
-      <div className="absolute top-[12%] right-[-5%] w-[85vh] h-[85vh] rounded-full bg-cyan-400/12 blur-[90px] pointer-events-none z-0 mix-blend-screen" />
+      {/* Radiant blue and indigo cosmic rim-light glow for the planet */}
+      <div className="absolute top-[5%] right-[-15%] w-[110vh] h-[110vh] rounded-full bg-blue-600/20 blur-[130px] pointer-events-none z-0 mix-blend-screen" />
+      <div className="absolute top-[12%] right-[-5%] w-[85vh] h-[85vh] rounded-full bg-sky-400/12 blur-[90px] pointer-events-none z-0 mix-blend-screen" />
 
-      {/* Green/cyan nebula clarity glow behind left panel */}
-      <div className="absolute top-[20%] left-[5%] w-[70vw] h-[70vw] rounded-full bg-teal-500/15 blur-[160px] pointer-events-none z-0 mix-blend-screen" />
+      {/* Blue/indigo nebula clarity glow behind left panel */}
+      <div className="absolute top-[20%] left-[5%] w-[70vw] h-[70vw] rounded-full bg-blue-500/12 blur-[160px] pointer-events-none z-0 mix-blend-screen" />
 
       {/* Main Container Layer above the video */}
       <div className="relative z-10 flex flex-col lg:flex-row h-screen w-full p-4 lg:p-6 justify-between gap-6 box-border overflow-hidden">
@@ -242,7 +243,7 @@ export default function App() {
                             }}
                             className="w-full text-left px-4 py-3.5 rounded-xl hover:bg-white/8 transition-all text-white/80 hover:text-white flex items-center gap-4 group cursor-pointer"
                           >
-                            <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-emerald-500/15 group-hover:border-emerald-400/30 transition-all">
+                            <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-blue-500/15 group-hover:border-blue-400/30 transition-all">
                               <item.icon size={16} strokeWidth={1.5} />
                             </div>
                             <span className="text-sm font-medium tracking-wide">{item.label}</span>
@@ -284,19 +285,19 @@ export default function App() {
                 variants={itemVariants}
               >
                 Lifestyle company offering <br />
-                trading education and <span className="font-serif-elegant text-cyan-300 font-normal">premium apparel.</span>
+                trading education and <span className="font-serif-elegant text-sky-400 font-normal">premium apparel.</span>
               </motion.h1>
 
               {/* Explore Memberships button */}
               <motion.div variants={itemVariants} className="mb-5">
                 <button
                   onClick={() => setGenerationCount(prev => prev + 1)}
-                  className="flex items-center gap-5 px-9 py-3 rounded-full bg-emerald-500/20 border border-emerald-400/40 hover:bg-emerald-500/30 hover:border-emerald-400/60 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                  className="flex items-center gap-5 px-9 py-3 rounded-full bg-blue-600 border border-blue-400/30 hover:bg-blue-500 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_0_25px_rgba(37,99,235,0.4)]"
                 >
                   <span className="text-base font-semibold tracking-wide text-white">
                     Explore Memberships
                   </span>
-                  <div className="w-7 h-7 rounded-full bg-emerald-500/40 border border-emerald-400/50 flex items-center justify-center text-white">
+                  <div className="w-7 h-7 rounded-full bg-blue-800 border border-blue-700 flex items-center justify-center text-white">
                     <ArrowRight size={14} strokeWidth={2.5} />
                   </div>
                 </button>
@@ -307,10 +308,10 @@ export default function App() {
                 className="flex flex-wrap items-center justify-center gap-3"
                 variants={itemVariants}
               >
-                {["Trading Academy", "Market Analysis", "Apparel Collection"].map((label) => (
+                 {["Trading Academy", "Market Analysis", "Apparel Collection"].map((label) => (
                   <span
                     key={label}
-                    className="px-5 py-2 rounded-full text-xs font-medium text-white/90 select-none hover:scale-105 transition-transform cursor-pointer bg-white/5 backdrop-blur-md border border-white/15 shadow-sm"
+                    className="px-5 py-2 rounded-full text-xs font-medium text-white select-none hover:scale-105 transition-transform cursor-pointer bg-black/45 hover:bg-black/60 backdrop-blur-md border border-white/20 shadow-sm"
                   >
                     {label}
                   </span>
@@ -328,7 +329,7 @@ export default function App() {
               </p>
 
               <p className="text-base italic text-white font-serif max-w-lg leading-relaxed px-6 mb-4">
-                "Precision in execution. <span className="font-serif italic text-cyan-200">Distinction in presentation.</span>"
+                "Precision in execution. <span className="font-serif italic text-blue-300">Distinction in presentation.</span>"
               </p>
 
               <div className="flex items-center justify-center gap-4 w-full">
@@ -390,7 +391,7 @@ export default function App() {
               className="glass-card p-2 rounded-full w-12 h-12 flex items-center justify-center text-white hover:scale-105 active:scale-95 transition-transform cursor-pointer relative"
             >
               <Sparkles size={20} />
-              {isChatOpen && <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 border-2 border-black" />}
+              {isChatOpen && <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-blue-400 border-2 border-black" />}
             </button>
 
             {/* AI Chatbox */}
@@ -406,12 +407,12 @@ export default function App() {
                   {/* Chat Header */}
                   <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center">
-                        <MessageCircle size={14} className="text-emerald-400" />
+                      <div className="w-8 h-8 rounded-full bg-blue-500/20 border border-blue-400/40 flex items-center justify-center">
+                        <MessageCircle size={14} className="text-blue-400" />
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-white">Markus</p>
-                        <p className="text-[10px] text-emerald-400/80">Online</p>
+                        <p className="text-[10px] text-blue-400/80">Online</p>
                       </div>
                     </div>
                     <button
@@ -433,7 +434,7 @@ export default function App() {
                         className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-xs leading-relaxed ${
                           msg.role === "ai"
                             ? "bg-white/8 text-white/90 self-start rounded-bl-md"
-                            : "bg-emerald-500/25 border border-emerald-400/20 text-white self-end rounded-br-md"
+                            : "bg-blue-600/25 border border-blue-500/20 text-white self-end rounded-br-md"
                         }`}
                       >
                         {msg.text}
@@ -480,7 +481,7 @@ export default function App() {
                       />
                       <button
                         onClick={handleSendMessage}
-                        className="w-7 h-7 rounded-full bg-emerald-500/30 border border-emerald-400/40 flex items-center justify-center text-white hover:bg-emerald-500/50 transition-all cursor-pointer"
+                        className="w-7 h-7 rounded-full bg-blue-600/30 border border-blue-500/40 flex items-center justify-center text-white hover:bg-blue-600/50 transition-all cursor-pointer"
                       >
                         <Send size={12} />
                       </button>
@@ -504,12 +505,12 @@ export default function App() {
 
           </div>
 
-          {/* Ecosystem Widget with updated text */}
+          {/* Ecosystem Widget with updated TPLS branding */}
           <div className="flex justify-end w-full">
-            <div className="glass-card-transparent p-6 rounded-2xl w-72 hover:scale-[1.02] transition-transform duration-300 text-left">
-              <p className="text-sm font-semibold tracking-wide mb-2 text-white/95">Enter our ecosystem</p>
+            <div className="glass-card p-6 rounded-2xl w-72 hover:scale-[1.02] transition-transform duration-300 text-left">
+              <p className="text-sm font-semibold tracking-wide mb-2 text-white/95">Every Tick, His Glory</p>
               <p className="text-sm font-light text-white/70 leading-relaxed">
-                Connect with creators and keep active with Bloom's modern AI-powered systems.
+                TPLS builds and operates premium lifestyle brands—clothing, trading education, and consumer goods—for those who lead with purpose.
               </p>
             </div>
           </div>
@@ -523,7 +524,7 @@ export default function App() {
               {/* Card 1: TPL: Markets */}
               <div 
                 onClick={() => navigate("/market-news")}
-                className="border border-white/10 bg-black/20 flex-1 p-5 rounded-[1.8rem] text-left hover:scale-[1.03] transition-transform duration-300 flex flex-col justify-between min-h-[140px] relative overflow-hidden cursor-pointer"
+                className="border border-white/15 bg-black/45 flex-1 p-5 rounded-[1.8rem] text-left hover:scale-[1.03] hover:bg-black/55 transition-all duration-300 flex flex-col justify-between min-h-[140px] relative overflow-hidden cursor-pointer"
               >
                 <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white mb-4">
                   <TrendingUp size={16} />
@@ -539,7 +540,7 @@ export default function App() {
               {/* Card 2: TPL: Apparel */}
               <div 
                 onClick={() => navigate("/apparel")}
-                className="border border-white/10 bg-black/20 flex-1 p-5 rounded-[1.8rem] text-left hover:scale-[1.03] transition-transform duration-300 flex flex-col justify-between min-h-[140px] relative overflow-hidden cursor-pointer"
+                className="border border-white/15 bg-black/45 flex-1 p-5 rounded-[1.8rem] text-left hover:scale-[1.03] hover:bg-black/55 transition-all duration-300 flex flex-col justify-between min-h-[140px] relative overflow-hidden cursor-pointer"
               >
                 <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white mb-4">
                   <Shirt size={16} />
@@ -557,7 +558,7 @@ export default function App() {
             {/* Bottom Accent Card with glowing cyan flower image and updated subtext */}
             <div 
               onClick={() => navigate('/trading')}
-              className="border border-white/10 bg-black/20 rounded-[1.8rem] flex items-stretch text-left hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden min-h-[110px] cursor-pointer"
+              className="border border-white/15 bg-black/45 rounded-[1.8rem] flex items-stretch text-left hover:scale-[1.02] hover:bg-black/55 transition-all duration-300 relative overflow-hidden min-h-[110px] cursor-pointer"
             >
               <div className="w-32 overflow-hidden relative flex-shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/10 z-10" />
@@ -599,7 +600,7 @@ export default function App() {
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute inset-0 bg-black/95 flex items-center justify-between px-6 rounded-[1.8rem] z-30"
                   >
-                    <span className="text-xs font-medium text-teal-300">Sculpting template activated!</span>
+                    <span className="text-xs font-medium text-blue-300">Sculpting template activated!</span>
                     <button
                       onClick={() => setPlusClicked(false)}
                       className="text-xs underline text-white/60 hover:text-white cursor-pointer"

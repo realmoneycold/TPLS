@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GoogleGenAI } from "@google/genai";
+import { generateAIChatReply } from "./services/aiConfig";
 import { motion, AnimatePresence } from "motion/react";
 import { MessageCircle, X, Send, Sparkles, Heart } from "lucide-react";
 import Header from './Header';
@@ -61,13 +61,13 @@ export default function Apparel() {
         throw new Error("API Key is not configured in .env file.");
       }
 
-      const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: userMsg,
-      });
+      const reply = await generateAIChatReply(
+        apiKey,
+        [...chatMessages, { role: "user", text: userMsg }],
+        userMsg,
+        "User is browsing the TPL: Apparel collection page. Featured products: Core Black Hoodie ($85.99), Schematic Longsleeve Tee ($55.00), Expressive Tee ($41.99), Core Cap ($34.99), Kinetic Tee ($41.99), Chladni Tote Bag ($24.99), Research Preview Cap ($34.99), Reverb Longsleeve Tee ($55.00), Core Tee ($41.99), Employee Tee ($41.99), Wave Hoodie ($85.99), Core Crew Sweatshirt ($75.00), 11_11 Crew Sweatshirt ($75.00), 11_11 Water Bottle ($29.99), Research Preview Hoodie ($85.99)."
+      );
 
-      const reply = response.text || "I couldn't generate a response. Please try again.";
       setChatMessages(prev => [...prev, { role: "ai", text: reply }]);
     } catch (err: any) {
       console.error(err);

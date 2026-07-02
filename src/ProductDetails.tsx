@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { MessageCircle, X, Send, Sparkles, Heart, Share2, Plus, Minus, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Header from './Header';
-import { GoogleGenAI } from "@google/genai";
+import { generateAIChatReply } from "./services/aiConfig";
 
 const productDatabase = {
   '1': {
@@ -147,12 +147,14 @@ export default function ProductDetails() {
       if (!apiKey || apiKey === "MY_GEMINI_API_KEY") {
         throw new Error("API Key is not configured.");
       }
-      const ai = new GoogleGenAI({ apiKey });
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: userMsg,
-      });
-      const reply = response.text || "I couldn't generate a response.";
+      
+      const reply = await generateAIChatReply(
+        apiKey,
+        [...chatMessages, { role: "user", text: userMsg }],
+        userMsg,
+        `User is viewing the details of the product: "${product.title}" (Price: ${product.price}, Sizes: ${product.sizes.join(', ')}, Description: ${product.desc}).`
+      );
+      
       setChatMessages(prev => [...prev, { role: "ai", text: reply }]);
     } catch (err: any) {
       console.error(err);
