@@ -7,8 +7,31 @@ import re
 
 SERVER_URL = "http://127.0.0.1:8000/api/live-news/"
 TELEGRAM_URL = "https://t.me/s/SM_News_24h"
+DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1522642337585434858/RkthoB9bbamUs-MzUQc6zJpwbODKhfQze7OMLdsKjCKw3AS3ftPxq2Zr5PZkSlH3iz-c"
 
 last_scraped_id = None
+
+async def send_to_discord(client, item):
+    if not DISCORD_WEBHOOK_URL:
+        return
+    
+    # Format message for Discord
+    embed = {
+        "title": item["title"],
+        "description": item["description"],
+        "color": 15158332 if item["breaking"] else 3447003, # Red for breaking, Blue for normal
+        "footer": {"text": f"Published: {item['date_published']}"}
+    }
+    
+    payload = {
+        "username": "TPLS News Bot",
+        "embeds": [embed]
+    }
+    
+    try:
+        await client.post(DISCORD_WEBHOOK_URL, json=payload)
+    except Exception as e:
+        print(f"Error posting to Discord: {e}", flush=True)
 
 async def fetch_page(client, url):
     try:
@@ -119,6 +142,11 @@ async def fetch_telegram_news():
             try:
                 print(f"Posting New: {item['title']}", flush=True)
                 await client.post(SERVER_URL, json=item, headers={'Content-Type': 'application/json'})
+                
+                # Forward to Discord if it's completely new
+                if last_scraped_id is not None:
+                    await send_to_discord(client, item)
+                    
             except Exception as e:
                 print(f"Error posting: {e}", flush=True)
                 pass
