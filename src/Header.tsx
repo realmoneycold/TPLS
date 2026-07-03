@@ -45,7 +45,7 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
     window.addEventListener('likedProductsUpdated', updateGlobalData);
     window.addEventListener('userUpdated', updateGlobalData);
     window.addEventListener('orderUpdated', updateGlobalData);
-    
+
     const interval = setInterval(updateGlobalData, 2000);
     return () => {
       window.removeEventListener('likedProductsUpdated', updateGlobalData);
@@ -58,7 +58,7 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
   const handleAuthSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    
+
     if (authMode === 'signup') {
       const existingUser = users.find((u: any) => u.email === authEmail);
       if (existingUser) {
@@ -142,6 +142,17 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
               <button onClick={() => navigate('/products')} className="flex items-center text-sm font-semibold text-gray-500 hover:text-black transition-colors cursor-pointer">
                 Women <iconify-icon icon="lucide:chevron-down" class="ml-1 text-xs"></iconify-icon>
               </button>
+              <div className="relative group cursor-pointer">
+                <button className="flex items-center text-sm font-semibold text-gray-500 hover:text-black transition-colors">
+                  Portals <iconify-icon icon="lucide:chevron-down" class="ml-1 text-xs"></iconify-icon>
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-40 bg-white border border-gray-100 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col p-2 z-50">
+                  <button onClick={() => navigate('/')} className="text-left px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50 rounded-md transition-colors">Home</button>
+                  <button onClick={() => navigate('/trading')} className="text-left px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50 rounded-md transition-colors">Trading</button>
+                  <button onClick={() => navigate('/market-news')} className="text-left px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50 rounded-md transition-colors">Market</button>
+                  <button onClick={() => navigate('/apparel')} className="text-left px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50 rounded-md transition-colors">Apparel</button>
+                </div>
+              </div>
             </div>
             <div className="md:hidden">
               <button className="p-2 text-gray-600">
@@ -163,7 +174,7 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                   </span>
                 )}
               </button>
-              
+
               <button onClick={() => setIsLikedModalOpen(true)} className="hidden sm:block text-gray-800 hover:text-black transition-colors cursor-pointer relative">
                 <Heart size={20} strokeWidth={1.5} />
                 {likedProducts.length > 0 && (
@@ -172,11 +183,11 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                   </span>
                 )}
               </button>
-              
+
               <div className="hidden sm:block relative">
                 {currentUser ? (
                   <>
-                    <div 
+                    <div
                       onClick={() => setShowUserMenu(!showUserMenu)}
                       className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold tracking-widest cursor-pointer select-none"
                     >
@@ -218,7 +229,7 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                 <X size={18} />
               </button>
             </div>
-            
+
             <div className="flex-1 overflow-y-auto p-6">
               {likedProducts.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center opacity-60">
@@ -243,7 +254,7 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                       <div className="flex-1 flex flex-col justify-center">
                         <h3 className="text-sm font-bold text-gray-900 mb-1">{prod.title}</h3>
                         <p className="text-xs text-gray-500 uppercase tracking-widest">Saved Item</p>
-                        <button 
+                        <button
                           className="mt-3 text-xs font-semibold text-red-500 hover:text-red-600 self-start"
                           onClick={(e) => {
                             e.stopPropagation();
@@ -278,7 +289,7 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                 <X size={18} />
               </button>
             </div>
-            
+
             <div className="flex-1 overflow-y-auto p-6 bg-gray-50/30">
               {!currentUser ? (
                 <div className="h-full flex flex-col items-center justify-center text-center opacity-80">
@@ -350,35 +361,35 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                 <X size={18} />
               </button>
             </div>
-            
+
             <div className="p-6">
               <form onSubmit={handleAuthSubmit} className="flex flex-col gap-4">
                 {authMode === 'signup' && (
                   <div>
                     <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Full Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={authName}
                       onChange={e => setAuthName(e.target.value)}
-                      required 
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" 
-                      placeholder="John Doe" 
+                      required
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:bg-white focus:border-black focus:outline-none transition-colors"
+                      placeholder="John Doe"
                     />
                   </div>
                 )}
-                
+
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">Email Address</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     value={authEmail}
                     onChange={e => setAuthEmail(e.target.value)}
-                    required 
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" 
-                    placeholder="you@example.com" 
+                    required
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:bg-white focus:border-black focus:outline-none transition-colors"
+                    placeholder="you@example.com"
                   />
                 </div>
-                
+
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wide">Password</label>
@@ -388,13 +399,13 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                       </button>
                     )}
                   </div>
-                  <input 
-                    type="password" 
+                  <input
+                    type="password"
                     value={authPassword}
                     onChange={e => setAuthPassword(e.target.value)}
-                    required 
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:bg-white focus:border-black focus:outline-none transition-colors" 
-                    placeholder="••••••••" 
+                    required
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:bg-white focus:border-black focus:outline-none transition-colors"
+                    placeholder="••••••••"
                   />
                 </div>
 
@@ -402,11 +413,11 @@ export default function Header({ bgColor = '#F9F9F9' }: { bgColor?: string }) {
                   {authMode === 'login' ? 'Log In' : 'Sign Up'}
                 </button>
               </form>
-              
+
               <div className="mt-6 pt-6 border-t border-gray-100 text-center">
                 <p className="text-xs text-gray-600">
                   {authMode === 'login' ? "Don't have an account?" : "Already have an account?"}
-                  <button 
+                  <button
                     onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')}
                     className="ml-1 text-black font-bold uppercase tracking-wide hover:underline underline-offset-2 cursor-pointer"
                   >

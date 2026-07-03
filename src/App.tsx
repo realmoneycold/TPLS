@@ -230,23 +230,23 @@ export default function App() {
       <div className="absolute top-[20%] left-[5%] w-[70vw] h-[70vw] rounded-full bg-blue-500/12 blur-[160px] pointer-events-none z-0 mix-blend-screen" />
 
       {/* Main Container Layer above the video */}
-      <div className="relative z-10 flex flex-col lg:flex-row h-screen w-full p-4 lg:p-6 justify-between gap-6 box-border overflow-hidden">
+      <div className="relative z-10 flex flex-col lg:flex-row min-h-screen lg:h-screen w-full p-4 lg:p-6 justify-between gap-6 box-border overflow-y-auto lg:overflow-hidden custom-scrollbar">
 
         {/* Left Panel - Dark translucent vertical glass panel (43% width) */}
-        <div className="w-full lg:w-[43%] lg:ml-[4%] relative flex flex-col h-full">
+        <div className="w-full lg:w-[43%] lg:ml-[4%] relative flex flex-col min-h-[85vh] lg:h-full">
           {/* Distinct, dark translucent vertical glass backplate */}
           <div className="absolute inset-0 rounded-[2rem] glass-panel-left z-0" />
 
           {/* Inner content wrapper with animations */}
           <motion.div
-            className="relative z-10 flex flex-col flex-1 p-6 lg:p-12 justify-between h-full"
+            className="relative z-10 flex flex-col flex-1 p-6 lg:p-8 2xl:p-12 justify-between h-full overflow-y-auto custom-scrollbar"
             initial="hidden"
             animate={introComplete ? "visible" : "hidden"}
             variants={containerVariants}
           >
 
             {/* Nav Header */}
-            <motion.div className="flex items-center justify-between w-full mb-12 lg:mb-16" variants={itemVariants}>
+            <motion.div className="flex items-center justify-between w-full mb-4 lg:mb-6 2xl:mb-16 shrink-0" variants={itemVariants}>
               <div className="flex items-center gap-3">
                 <img src={tplLogo} alt="TPLS Logo" className="w-10 h-10 object-contain rounded-sm" />
                 <span className="text-2xl font-semibold tracking-tighter text-white font-sans uppercase">TPLS</span>
@@ -346,13 +346,13 @@ export default function App() {
             {/* Hero Center */}
             <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-2">
               {/* TPLS Logo centered above headline */}
-              <motion.div variants={itemVariants} className="mb-3">
-                <img src={tplLogo} alt="TPLS" className="w-14 h-14 object-contain" />
+              <motion.div variants={itemVariants} className="mb-2 2xl:mb-3">
+                <img src={tplLogo} alt="TPLS" className="w-10 h-10 2xl:w-14 2xl:h-14 object-contain" />
               </motion.div>
 
               {/* Main Headline */}
               <motion.h1
-                className="text-4xl lg:text-[3.8rem] font-medium tracking-[-0.04em] leading-[1.05] mb-5 text-white max-w-2xl font-sans"
+                className="text-3xl lg:text-4xl xl:text-[2.6rem] 2xl:text-[3.8rem] font-medium tracking-[-0.04em] leading-[1.05] mb-3 2xl:mb-5 text-white max-w-2xl font-sans"
                 variants={itemVariants}
               >
                 Lifestyle company offering <br />
@@ -360,10 +360,10 @@ export default function App() {
               </motion.h1>
 
               {/* Explore Memberships button */}
-              <motion.div variants={itemVariants} className="mb-5">
+              <motion.div variants={itemVariants} className="mb-3 2xl:mb-5">
                 <button
                   onClick={() => navigate('/trading')}
-                  className="flex items-center gap-5 px-9 py-3 rounded-full bg-blue-600 border border-blue-400/30 hover:bg-blue-500 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_0_25px_rgba(37,99,235,0.4)]"
+                  className="flex items-center gap-3 2xl:gap-5 px-6 py-2.5 2xl:px-9 2xl:py-3 rounded-full bg-blue-600 border border-blue-400/30 hover:bg-blue-500 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer shadow-[0_0_25px_rgba(37,99,235,0.4)]"
                 >
                   <span className="text-base font-semibold tracking-wide text-white">
                     Explore Memberships
@@ -376,7 +376,7 @@ export default function App() {
 
               {/* Three tag pills */}
               <motion.div
-                className="flex flex-wrap items-center justify-center gap-3"
+                className="flex flex-wrap items-center justify-center gap-2 2xl:gap-3"
                 variants={itemVariants}
               >
                  {[
@@ -387,7 +387,7 @@ export default function App() {
                   <span
                     key={item.label}
                     onClick={() => navigate(item.path)}
-                    className="px-5 py-2 rounded-full text-xs font-medium text-white select-none hover:scale-105 transition-transform cursor-pointer bg-black/45 hover:bg-black/60 backdrop-blur-md border border-white/20 shadow-sm"
+                    className="px-3 py-1.5 2xl:px-5 2xl:py-2 rounded-full text-[10px] 2xl:text-xs font-medium text-white select-none hover:scale-105 transition-transform cursor-pointer bg-black/45 hover:bg-black/60 backdrop-blur-md border border-white/20 shadow-sm"
                   >
                     {item.label}
                   </span>
@@ -397,32 +397,32 @@ export default function App() {
 
             {/* Bottom Quote Section */}
             <motion.div
-              className="pt-4 pb-4 text-center flex flex-col items-center justify-center w-full"
+              className="pt-2 pb-1 2xl:pt-4 2xl:pb-4 text-center hidden md:flex flex-col items-center justify-center w-full shrink-0"
               variants={itemVariants}
             >
-              <p className="text-[11px] tracking-[0.35em] uppercase text-white/70 mb-4 font-semibold">
+              <p className="text-[10px] 2xl:text-[11px] tracking-[0.35em] uppercase text-white/70 mb-2 2xl:mb-4 font-semibold">
                 Our Philosophy
               </p>
 
-              <p className="text-base italic text-white font-serif max-w-lg leading-relaxed px-6 mb-4">
+              <p className="text-xs 2xl:text-base italic text-white font-serif max-w-lg leading-relaxed px-6 mb-2 2xl:mb-4">
                 "Precision in execution. <span className="font-serif italic text-blue-300">Distinction in presentation.</span>"
               </p>
 
               <div className="flex items-center justify-center gap-4 w-full">
-                <div className="h-[1px] w-14 bg-white/20" />
-                <p className="text-[11px] tracking-[0.25em] text-white/80 uppercase font-semibold">
+                <div className="h-[1px] w-10 2xl:w-14 bg-white/20" />
+                <p className="text-[9px] 2xl:text-[11px] tracking-[0.25em] text-white/80 uppercase font-semibold">
                   TPLS Ecosystem
                 </p>
-                <div className="h-[1px] w-14 bg-white/20" />
+                <div className="h-[1px] w-10 2xl:w-14 bg-white/20" />
               </div>
             </motion.div>
 
           </motion.div>
         </div>
 
-        {/* Right Panel (Desktop Only - 48% width) */}
+        {/* Right Panel (Responsive Layout - 48% width on desktop) */}
         <motion.div
-          className="hidden lg:flex lg:w-[48%] flex-col justify-between p-4 gap-4 z-10 relative"
+          className="flex w-full lg:w-[48%] flex-col justify-between p-4 gap-6 lg:gap-4 z-10 relative mt-8 lg:mt-0 pb-12 lg:pb-0"
           initial="hidden"
           animate={introComplete ? "visible" : "hidden"}
           variants={{

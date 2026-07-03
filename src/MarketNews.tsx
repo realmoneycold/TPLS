@@ -329,12 +329,12 @@ export default function MarketNews() {
       <div className="flex flex-col p-4 md:p-6 lg:p-8 w-full max-w-[1600px] mx-auto gap-6 flex-1">
 
         {/* Header Navigation */}
-        <header className="flex items-center justify-between glass-panel rounded-2xl p-3 px-6 sticky top-4 z-50">
-          <div className="flex items-center gap-8">
+        <header className="flex flex-col md:flex-row items-center justify-between gap-4 glass-panel rounded-2xl p-3 px-4 md:px-6 sticky top-4 z-50">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto">
             <Link to="/" className="flex items-center justify-center h-10">
               <img src="/TPLS.png" alt="TPL Logo" className="h-8 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
             </Link>
-            <nav className="hidden md:flex items-center gap-2 bg-cardDark/50 p-1 rounded-full border border-borderGray">
+            <nav className="flex items-center gap-1 sm:gap-2 bg-cardDark/50 p-1 rounded-full border border-borderGray w-full md:w-auto justify-center overflow-x-auto hide-scrollbar">
               <button
                 onClick={() => setActiveTab('gex')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${activeTab === 'gex' ? 'bg-cardDark border border-borderGray text-white shadow-sm' : 'text-textGray hover:text-white'}`}
@@ -352,6 +352,18 @@ export default function MarketNews() {
             </nav>
           </div>
           <div className="flex items-center gap-4">
+            <div className="relative group cursor-pointer hidden lg:block mr-2">
+              <button className="flex items-center gap-1.5 px-5 py-2.5 bg-cardDark/50 rounded-full border border-borderGray text-sm font-bold text-textGray hover:text-white transition-all">
+                <iconify-icon icon="lucide:layout-grid" className="text-lg"></iconify-icon>
+                Portals
+                <iconify-icon icon="lucide:chevron-down" className="text-sm"></iconify-icon>
+              </button>
+              <div className="absolute top-full right-0 mt-2 w-48 bg-cardDark border border-borderGray rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col p-2 z-50">
+                <Link to="/" className="px-4 py-2 text-sm font-medium text-textGray hover:text-white hover:bg-white/5 rounded-md transition-colors">Home</Link>
+                <Link to="/trading" className="px-4 py-2 text-sm font-medium text-textGray hover:text-white hover:bg-white/5 rounded-md transition-colors">Trading Academy</Link>
+                <Link to="/apparel" className="px-4 py-2 text-sm font-medium text-textGray hover:text-white hover:bg-white/5 rounded-md transition-colors">Apparel Collection</Link>
+              </div>
+            </div>
             <a href="#" className="flex items-center gap-2 px-5 py-2.5 bg-gradient-purple rounded-full text-sm font-bold text-white shadow-lg shadow-purpleAccent/20 hover:opacity-90 transition-all">
               <iconify-icon icon="mdi:discord" className="text-lg"></iconify-icon>
               Join TPLS
@@ -744,84 +756,84 @@ export default function MarketNews() {
             )}
 
             {/* Unified Live Feed Card */}
-                <div className="glass-panel rounded-3xl p-6 flex flex-col w-full border border-borderGray flex-1 min-h-[600px] max-h-[850px]">
+            <div className="glass-panel rounded-3xl p-6 flex flex-col w-full border border-borderGray flex-1 min-h-[600px] max-h-[850px]">
 
-                  {/* Header */}
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-borderGray">
-                    <h3 className="text-sm font-semibold flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
-                      Live Market Feed
-                    </h3>
-                    {/* For future implementation */}
-                    {/* <div className="flex items-center gap-2 text-xs text-textGray hover:text-white cursor-pointer transition-colors">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-borderGray">
+                <h3 className="text-sm font-semibold flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
+                  Live Market Feed
+                </h3>
+                {/* For future implementation */}
+                {/* <div className="flex items-center gap-2 text-xs text-textGray hover:text-white cursor-pointer transition-colors">
                       <iconify-icon icon="lucide:filter"></iconify-icon> Filter Sources
                     </div> */}
+              </div>
+
+              {/* Scrollable Feed List */}
+              <div className="flex flex-col gap-3 overflow-y-auto custom-scrollbar pr-2 flex-1">
+                {newsLoading ? (
+                  <div className="flex-1 flex items-center justify-center">
+                    <iconify-icon icon="lucide:loader-2" className="text-4xl text-purpleAccent animate-spin"></iconify-icon>
                   </div>
+                ) : liveNews.length === 0 ? (
+                  <div className="flex-1 flex items-center justify-center text-textGray text-sm">
+                    No news available right now.
+                  </div>
+                ) : (
+                  liveNews.map((news) => {
+                    const marketKeywords = ['trump', 'iran', 'fed', 'fomc', 'powell', 'ecb', 'biden', 'putin', 'russia', 'china', 'opec', 'sec', 'war', 'missile', 'attack'];
+                    const fullText = `${news.headline} ${news.summary || ''}`.toLowerCase();
 
-                  {/* Scrollable Feed List */}
-                  <div className="flex flex-col gap-3 overflow-y-auto custom-scrollbar pr-2 flex-1">
-                    {newsLoading ? (
-                      <div className="flex-1 flex items-center justify-center">
-                        <iconify-icon icon="lucide:loader-2" className="text-4xl text-purpleAccent animate-spin"></iconify-icon>
-                      </div>
-                    ) : liveNews.length === 0 ? (
-                      <div className="flex-1 flex items-center justify-center text-textGray text-sm">
-                        No news available right now.
-                      </div>
-                    ) : (
-                      liveNews.map((news) => {
-                        const marketKeywords = ['trump', 'iran', 'fed', 'fomc', 'powell', 'ecb', 'biden', 'putin', 'russia', 'china', 'opec', 'sec', 'war', 'missile', 'attack'];
-                        const fullText = `${news.headline} ${news.summary || ''}`.toLowerCase();
+                    let matchedKeyword = null;
+                    for (const kw of marketKeywords) {
+                      // use regex word boundary to match exact words if possible, or just simple includes
+                      if (fullText.includes(kw)) {
+                        matchedKeyword = kw.toUpperCase();
+                        break;
+                      }
+                    }
 
-                        let matchedKeyword = null;
-                        for (const kw of marketKeywords) {
-                          // use regex word boundary to match exact words if possible, or just simple includes
-                          if (fullText.includes(kw)) {
-                            matchedKeyword = kw.toUpperCase();
-                            break;
-                          }
-                        }
+                    let sourceClasses = getSourceColor(news.source);
+                    let displaySource = news.source;
+                    let textClass = "text-textGray";
 
-                        let sourceClasses = getSourceColor(news.source);
-                        let displaySource = news.source;
-                        let textClass = "text-textGray";
+                    if (matchedKeyword) {
+                      sourceClasses = "bg-red-500/5 border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)] hover:bg-red-500/10";
+                      displaySource = `${news.source} (${matchedKeyword})`;
+                      textClass = "text-red-500 font-bold";
+                    } else if (news.isBreaking) {
+                      sourceClasses = "bg-red-500/5 border-red-500/30 hover:bg-red-500/10";
+                      textClass = "text-red-400";
+                    }
 
-                        if (matchedKeyword) {
-                          sourceClasses = "bg-red-500/5 border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.1)] hover:bg-red-500/10";
-                          displaySource = `${news.source} (${matchedKeyword})`;
-                          textClass = "text-red-500 font-bold";
-                        } else if (news.isBreaking) {
-                          sourceClasses = "bg-red-500/5 border-red-500/30 hover:bg-red-500/10";
-                          textClass = "text-red-400";
-                        }
-
-                        return (
-                          <div key={news.id} className={`p-4 rounded-2xl flex flex-col gap-2 transition-colors block border ${sourceClasses}`}>
-                            <div className="flex items-center justify-between">
-                              <span className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 ${textClass}`}>
-                                {getSourceIcon(displaySource)}
-                              </span>
-                              <span className="text-[10px] text-textGray font-medium">{news.timeAgo}</span>
-                            </div>
-                            <p className="text-sm font-medium text-white/90 leading-snug">{news.headline}</p>
-                            {news.summary && news.summary !== news.headline && (
-                              <p className="text-xs text-textGray leading-relaxed whitespace-pre-wrap mt-1">
-                                {news.summary}
-                              </p>
-                            )}
-                            {news.related && (
-                              <div className="flex gap-2 mt-1 flex-wrap">
-                                {news.related.split(',').slice(0, 3).map((tag, idx) => (
-                                  <span key={idx} className="text-[9px] px-2 py-0.5 rounded-full bg-cardDark border border-borderGray text-textGray">{tag.trim()}</span>
-                                ))}
-                              </div>
-                            )}
+                    return (
+                      <div key={news.id} className={`p-4 rounded-2xl flex flex-col gap-2 transition-colors block border ${sourceClasses}`}>
+                        <div className="flex items-center justify-between">
+                          <span className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 ${textClass}`}>
+                            {getSourceIcon(displaySource)}
+                          </span>
+                          <span className="text-[10px] text-textGray font-medium">{news.timeAgo}</span>
+                        </div>
+                        <p className="text-sm font-medium text-white/90 leading-snug">{news.headline}</p>
+                        {news.summary && news.summary !== news.headline && (
+                          <p className="text-xs text-textGray leading-relaxed whitespace-pre-wrap mt-1">
+                            {news.summary}
+                          </p>
+                        )}
+                        {news.related && (
+                          <div className="flex gap-2 mt-1 flex-wrap">
+                            {news.related.split(',').slice(0, 3).map((tag, idx) => (
+                              <span key={idx} className="text-[9px] px-2 py-0.5 rounded-full bg-cardDark border border-borderGray text-textGray">{tag.trim()}</span>
+                            ))}
                           </div>
-                        );
-                      })
-                    )}
-                  </div>
-                </div>
+                        )}
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
 
           </div>
 
