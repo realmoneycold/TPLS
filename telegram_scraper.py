@@ -16,7 +16,7 @@ async def fetch_page(client, url):
         response.raise_for_status()
         return response.text
     except Exception as e:
-        print(f"Error fetching Telegram URL {url}: {e}")
+        print(f"Error fetching Telegram URL {url}: {e}", flush=True)
         return None
 
 async def parse_and_post_messages(client, html_content):
@@ -97,10 +97,10 @@ async def fetch_telegram_history(client, max_pages=5):
         if last_scraped_id is not None and item['news_id'] <= last_scraped_id:
             continue
         try:
-            print(f"Posting History: {item['title']}")
+            print(f"Posting History: {item['title']}", flush=True)
             res = await client.post(SERVER_URL, json=item, headers={'Content-Type': 'application/json'})
         except Exception as e:
-            print(f"Error posting: {e}")
+            print(f"Error posting: {e}", flush=True)
             pass
         if last_scraped_id is None or item['news_id'] > last_scraped_id:
             last_scraped_id = item['news_id']
@@ -117,21 +117,24 @@ async def fetch_telegram_news():
             if last_scraped_id is not None and item['news_id'] <= last_scraped_id:
                 continue
             try:
-                print(f"Posting New: {item['title']}")
+                print(f"Posting New: {item['title']}", flush=True)
                 await client.post(SERVER_URL, json=item, headers={'Content-Type': 'application/json'})
             except Exception as e:
-                print(f"Error posting: {e}")
+                print(f"Error posting: {e}", flush=True)
                 pass
             if last_scraped_id is None or item['news_id'] > last_scraped_id:
                 last_scraped_id = item['news_id']
 
 async def main():
-    print("Starting Telegram Scraper for TPLS NEWS...")
+    print("Starting Telegram Scraper for TPLS NEWS...", flush=True)
     async with httpx.AsyncClient() as client:
         await fetch_telegram_history(client, max_pages=10)
     
     while True:
-        await fetch_telegram_news()
+        try:
+            await fetch_telegram_news()
+        except Exception as e:
+            print(f"Unhandled error in fetch_telegram_news: {e}", flush=True)
         await asyncio.sleep(10)
 
 if __name__ == "__main__":
